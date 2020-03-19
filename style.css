@@ -1,4 +1,5 @@
 @import 'https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap&subset=latin-ext';
+@import 'https://fonts.googleapis.com/css?family=Roboto&display=swap';
 
 *{
     margin: 0;
@@ -58,6 +59,42 @@ main p{
 .image{
     position: absolute;
     bottom: 0;
-    right: 7.1%;
+    right: 8%;
 }
 
+article h2{
+    color: #111111;
+    font-size: 24px;
+    font-family: 'Roboto-Bold', sans-serif;
+    text-align: left;
+    margin: auto auto auto 15vw;
+}
+.cards{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin: 2vh 15vw;
+    gap: 20px;
+}
+article .card{
+    text-align: left;
+    line-height: 16pt;
+}
+.card img{
+    border-radius: 15px;
+    width: 300px;
+    margin: 2vh auto;
+}
+.card h3{
+    color: #111111;
+    font-size:18px;
+    font-family: 'Roboto', sans-serif;
+}
+.card p{
+    font-size: 14px;
+    color: #777777;
+    font-family: 'Roboto-Regular', sans-serif;
+}
+
+footer{
+    background: #eeeeee;
+}
