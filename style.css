@@ -7,16 +7,47 @@
 body{
     text-align: center;
 }
+header{
+    margin: 30px;
+    text-align: left;
+}
 header a{
     text-decoration: none;
     color: #000000;
-    margin-inline-start: 20px;
 }
 .foodfy{
-    font-size: 26px;
-    margin: auto 40px auto auto;
+    font-size: 24pt;
+    margin: auto 10vw auto 25vh;
+}
+.sobre{
+    margin-right: 2vw;
+}
+.sobre, .receitas{
+    font-size: 14pt;
 }
 
 main{
-    border: 0px solid #FBDFDB;
+    background: #FBDFDB;
+    border-radius: 30px;
+    margin: auto 30vh 10vh;
+    position: relative;
+}
+main .text{
+    text-align: left;
+    margin: 100px 400px 100px 50px;
+}
+main h2{
+    font-size: 32px;
+    font-family: 'Roboto-bold' sans-serif;
+}
+main p{
+    font-family: 'Roboto' sans-serif;
+    font-size: 18px;
+    color: rgba(0, 0, 0, 0.7);
+    
+}
+main .image{
+    position: absolute;
+    right: 20px;
+    bottom: 10px;
 }
