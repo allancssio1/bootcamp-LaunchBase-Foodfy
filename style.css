@@ -7,7 +7,7 @@
 }
 body{
     text-align: center;
-    max-width: 1024px;
+    /* max-width: 1024px; */
 }
 header{
     margin-top: 20px;
@@ -22,10 +22,10 @@ header a{
     text-decoration: none;
     color: #000000;
 }
-.sobre{
+.navSobre{
     margin-right: 2vw;
 }
-.sobre, .receitas{
+.navSobre, .navReceitas{
     font-size: 12pt;
     font-family: 'Roboto-regular', sans-serif;
 }
@@ -35,7 +35,7 @@ header a{
     border-radius: 30px;
     margin: auto 30vh 10vh;
     position: relative;
-    width: 92%;
+    width: 70%;
     height: 400px;
 }
 .text{
@@ -44,17 +44,17 @@ header a{
     margin: 14% 40% 11.6% 4.3%;
     left: 3vw;
 }
-main h2{
+main #titleIndex{
     font-size: 32px;
     font-family: 'Roboto-bold', sans-serif;
     margin-bottom: 10px;
 }
-main p{
+main #paragrafoCenter{
     font-family: 'Roboto', sans-serif;
     font-size: 18px;
     color: rgba(0, 0, 0, 0.7);    
     line-height: 28px;
-    max-width: 350px;
+    width: 70%;
 }
 .image{
     position: absolute;
@@ -62,7 +62,7 @@ main p{
     right: 8%;
 }
 
-article h2{
+article .mais-receitas{
     color: #111111;
     font-size: 24px;
     font-family: 'Roboto-Bold', sans-serif;
@@ -92,9 +92,41 @@ article .card{
 .card p{
     font-size: 14px;
     color: #777777;
-    font-family: 'Roboto-Regular', sans-serif;
+    font-family: 'Roboto', sans-serif;
 }
 
+/*===SOBRE===*/
+body .sobre{
+    text-align: left;
+    margin: auto 15vw;
+    max-width: 1400px;
+}
+.sobre #sobreFoodfy{
+    font-size: 24px;
+    font-family: 'Roboto-bold', sans-serif;
+}
+.sobre .sobreParagrafo{
+    font-size: 18px;
+    margin: 5vh auto;
+    font-family: 'Roboto', sans-serif;
+    color: #444444;
+    line-height: 28px;
+    width: 100%;
+}
+.sobre .sobreFoodfy{
+    font-family: 'Roboto-bold', sans-serif;
+    font-size: 20px;
+}
+
+/*===RODAPE===*/
 footer{
+    margin-top: 15vh;
+}
+footer h3{
     background: #eeeeee;
+    color: #999999;
+    font-size: 14px;
+    font-family: 'Roboto-Regular', sans-serif;
+    width: 100%;
+    padding: 23px;
 }
