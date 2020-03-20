@@ -1,5 +1,5 @@
 @import 'https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap&subset=latin-ext';
-@import 'https://fonts.googleapis.com/css?family=Roboto&display=swap';
+
 
 *{
     margin: 0;
@@ -103,6 +103,9 @@ body .sobre{
     margin: auto 15vw;
     max-width: 1400px;
 }
+/* body header nav a #navSobre{
+    font-family: 'Roboto-Bold', sans-serif;
+} */
 .sobre #sobreFoodfy{
     font-size: 24px;
     font-family: 'Roboto-bold', sans-serif;
@@ -118,6 +121,24 @@ body .sobre{
 .sobre .sobreFoodfy{
     font-family: 'Roboto-bold', sans-serif;
     font-size: 20px;
+}
+
+/*===MODAL===*/
+.modalOverlay{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    background: rgba(0, 0, 0, 0.6);
+    opacity: 0.6;
+}
+.modalOverlay .modal{
+    background: white;
+    width: 600px;
+    height: 300px;
+    position: relative;
+    margin: 28vh 28vw;
+    opacity: 100%;
 }
 
 /*===RODAPE===*/
