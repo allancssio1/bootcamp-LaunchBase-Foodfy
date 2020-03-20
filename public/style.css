@@ -5,10 +5,12 @@
     margin: 0;
     padding: 0;
 }
+
 body{
     text-align: center;
     /* max-width: 1024px; */
 }
+
 header{
     margin-top: 20px;
     margin-bottom: 40px;
@@ -27,7 +29,7 @@ header a{
 }
 .navSobre, .navReceitas{
     font-size: 12pt;
-    font-family: 'Roboto-regular', sans-serif;
+    font-family: 'Roboto-Regular', sans-serif;
 }
 
 .artCenter{
