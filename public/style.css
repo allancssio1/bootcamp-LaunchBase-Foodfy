@@ -134,10 +134,11 @@ body .sobre{
 }
 .modalOverlay .modal{
     background: white;
-    width: 600px;
-    height: 300px;
+    width: 660px;
+    border-radius: 16px;
+    height: 413px;
     position: relative;
-    margin: 28vh 28vw;
+    margin: 22vh 22vw;
     opacity: 1;
 }
 .closeModal{
@@ -146,6 +147,11 @@ body .sobre{
     position: absolute;
     bottom: 5px;
     left: 20vw;
+}
+.iframe{
+    margin: 2.7% 2.1% 2.1% 16.3%;
+    border-radius: 30px;
+    margin: 18px 10px auto 10px;
 }
 
 /*===MODAL.ACTIVE===*/
