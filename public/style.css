@@ -148,6 +148,11 @@ body .sobre{
     left: 20vw;
 }
 
+/*===MODAL.ACTIVE===*/
+.active{
+    
+}
+
 /*===RODAPE===*/
 footer{
     margin-top: 15vh;
