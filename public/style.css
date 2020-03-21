@@ -130,7 +130,7 @@ body .sobre{
     position: fixed;
     top: 0;
     background: rgba(0, 0, 0, 0.6);
-    opacity: 0.6;
+    opacity: 1;
 }
 .modalOverlay .modal{
     background: white;
@@ -138,7 +138,14 @@ body .sobre{
     height: 300px;
     position: relative;
     margin: 28vh 28vw;
-    opacity: 100%;
+    opacity: 1;
+}
+.closeModal{
+    font-family: 'Roboto', sans-serif;
+    color: #999999;
+    position: absolute;
+    bottom: 5px;
+    left: 20vw;
 }
 
 /*===RODAPE===*/
