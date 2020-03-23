@@ -8,24 +8,30 @@
 
 body{
     text-align: center;
-    /* max-width: 1024px; */
+    margin: auto;
 }
 
 header{
-    margin-top: 20px;
-    margin-bottom: 40px;
-}
-header .foodfy{
     text-align: left;
+    margin: 4vh auto 7vh auto;
+    width: 100%;
+    max-width: 980px;
+}
+.navegacao{
+    width: 100%;
+    max-width: 980px;
+}
+header .navegacao .foodfy{
     position: absolute;
-    left: 15vw;
+    left: 15%;
+    margin: auto;
 }
 header a{
     text-decoration: none;
     color: #000000;
 }
 .navSobre{
-    margin-right: 2vw;
+    margin: auto 3% auto 30%;
 }
 .navSobre, .navReceitas{
     font-size: 12pt;
@@ -33,17 +39,18 @@ header a{
 }
 
 .artCenter{
+    width: 100%;
+    max-width: 980px;
     background: #FBDFDB;
     border-radius: 30px;
-    margin: auto 30vh 10vh;
+    margin: auto 14% 10vh;
     position: relative;
-    width: 70%;
     height: 400px;
 }
 .text{
     text-align: left;
     position: absolute;
-    margin: 14% 40% 11.6% 4.3%;
+    top: 40%;
     left: 3vw;
 }
 main #titleIndex{
@@ -56,7 +63,7 @@ main #paragrafoCenter{
     font-size: 18px;
     color: rgba(0, 0, 0, 0.7);    
     line-height: 28px;
-    width: 70%;
+    width: 45%;
 }
 .image{
     position: absolute;
@@ -64,17 +71,21 @@ main #paragrafoCenter{
     right: 8%;
 }
 
+.maisReceitas{
+    width: 100%;
+    max-width: 980px;
+}
 article .mais-receitas{
     color: #111111;
     font-size: 24px;
     font-family: 'Roboto-Bold', sans-serif;
     text-align: left;
-    margin: auto auto auto 15vw;
+    margin: auto 20%;
 }
 .cards{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    margin: 2vh 15vw;
+    margin: 2vh 20%;
     gap: 20px;
 }
 article .card{
@@ -102,7 +113,8 @@ article .card{
 body .sobre{
     text-align: left;
     margin: auto 15vw;
-    max-width: 1400px;
+    width: 100%;
+    max-width: 980px;
 }
 /* body header nav a #navSobre{
     font-family: 'Roboto-Bold', sans-serif;
@@ -177,6 +189,8 @@ body .sobre{
 
 /*===RODAPE===*/
 footer{
+    width: 100%;
+    max-width: 1350px;
     margin-top: 15vh;
 }
 footer h3{
@@ -184,6 +198,5 @@ footer h3{
     color: #999999;
     font-size: 14px;
     font-family: 'Roboto-Regular', sans-serif;
-    width: 100%;
     padding: 23px;
 }
