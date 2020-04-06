@@ -3,6 +3,8 @@ const nunjucks = require("nunjucks")
 
 //configuração do server
 const server = express()
+const receitas = require("./data")
+const receitas1 = require("./data1")
 
 //pastas de arquivos
 server.use(express.static('public'))
@@ -12,23 +14,20 @@ server.use(express.static('assets'))
 server.set("view engine", "njk")
 
 nunjucks.configure("views", {
-    express: server
+    express: server,
+    autoescape: false
 })
 
 //rotas da página
 server.get("/index", function(request, response){
-    return response.render("index")
+    return response.render("index", { items: receitas1 })
 })
 server.get("/about", function(request, response){
     return response.render("about")
 })
 server.get("/recipes", function(request, response){
-    return response.render("recipes")
+    return response.render("recipes", { items: receitas })
 })
-server.get("/layout", function(request, response){
-    return response.render("layout")
-})
-
 
 server.listen(5000, function(){
     console.log("Server is Running")

@@ -1,5 +1,9 @@
 {% extends "layout.njk" %}}
 
+{% block head %}
+    <title>init - Foodfy</title>
+{% endblock %}
+
 {% block content %}    
     <main class="artCenter">
         <div class="text">
@@ -18,44 +22,13 @@
     <article class="maisReceitas">
         <h2 class="mais-receitas">Mais acessadas</h2>
         <div class="cards">
-
-            <div class="card" id="/burger.png">
-                <img src="/burger.png"/>
-                <h3 class="subTitle">Triplo bacon burger</h3>
-                <p class="author">por Jorge Relato</p>
-            </div>
-
-            <div class="card" id="/pizza.png">
-                <img src="/pizza.png"/>
-                <h3 class="subTitle">Pizza 4 estações</h3>
-                <p class="author">por Fabiana Melo</p>
-            </div>
-
-            <div class="card" id="/espaguete.png">
-                <img src="/espaguete.png"/>
-                <h3 class="subTitle">Espaguete ao alho</h3>
-                <p class="author">por Júlia Kinoto</p>
-            </div>
-
-            <div class="card" id="/lasanha.png">
-                <img src="/lasanha.png"/>
-                <h3 class="subTitle">Lasanha mac n’ cheese</h3>
-                <p class="author">por Juliano Vieira</p>
-            </div>
-
-            <div class="card" id="/doce.png">
-                <img src="/doce.png"/>
-                <h3 class="subTitle">Docinhos pão-do-céu</h3>
-                <p class="author">por Ricardo Golvea</p>
-            </div>
-
-            <div class="card" id="/asinhas.png">
-                <img src="../asinhas.png"/>
-                <h3 class="subTitle">Asinhas de frango ao barbecue</h3>
-                <p class="author">por Vania Steroski</p>
-            </div>
-        </div>
-
+            {% for item in items %}
+                <div class="card" id="{{item.id}}">
+                    <img src="{{item.id}}"/>
+                    <h3 class="subTitle">{{item.title}}</h3>
+                    <p class="author">{{item.author}}</p>
+                </div>
+            {% endfor %}
     </article>
     
     <article class="modalOverlay">
