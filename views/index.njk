@@ -1,22 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../public/style.css">
-    <title>Foodfy</title>
-</head>
-<body>
-    <header>
-        <nav class="navegacao">
-            <a href="layout.html" class="foodfy">
-                <img src="../assets/logo.png" alt="logo foodfy"/>
-            </a>
-            <a href="about.html" class="navSobre">Sobre</a>
-            <a href="recipes.html" class="navReceitas">Receitas</a>
-        </nav>
-    </header>
-    
+{% extends "layout.njk" %}}
+
+{% block content %}    
     <main class="artCenter">
         <div class="text">
             <h2 id="titleIndex">As melhores receitas</h2>
@@ -27,7 +11,7 @@
             </p>
         </div>
         <div class="image">
-            <img src="../assets/chef.png" alt="chefe Foodfy" id="chef"/>
+            <img src="/chef.png" alt="chefe Foodfy" id="chef"/>
         </div>
     </main>
 
@@ -35,38 +19,38 @@
         <h2 class="mais-receitas">Mais acessadas</h2>
         <div class="cards">
 
-            <div class="card" id="/assets/burger.png">
-                <img src="/assets/burger.png"/>
+            <div class="card" id="/burger.png">
+                <img src="/burger.png"/>
                 <h3 class="subTitle">Triplo bacon burger</h3>
                 <p class="author">por Jorge Relato</p>
             </div>
 
-            <div class="card" id="/assets/pizza.png">
-                <img src="/assets/pizza.png"/>
+            <div class="card" id="/pizza.png">
+                <img src="/pizza.png"/>
                 <h3 class="subTitle">Pizza 4 estações</h3>
                 <p class="author">por Fabiana Melo</p>
             </div>
 
-            <div class="card" id="/assets/espaguete.png">
-                <img src="/assets/espaguete.png"/>
+            <div class="card" id="/espaguete.png">
+                <img src="/espaguete.png"/>
                 <h3 class="subTitle">Espaguete ao alho</h3>
                 <p class="author">por Júlia Kinoto</p>
             </div>
 
-            <div class="card" id="/assets/lasanha.png">
-                <img src="/assets/lasanha.png"/>
+            <div class="card" id="/lasanha.png">
+                <img src="/lasanha.png"/>
                 <h3 class="subTitle">Lasanha mac n’ cheese</h3>
                 <p class="author">por Juliano Vieira</p>
             </div>
 
-            <div class="card" id="/assets/doce.png">
-                <img src="/assets/doce.png"/>
+            <div class="card" id="/doce.png">
+                <img src="/doce.png"/>
                 <h3 class="subTitle">Docinhos pão-do-céu</h3>
                 <p class="author">por Ricardo Golvea</p>
             </div>
 
-            <div class="card" id="/assets/asinhas.png">
-                <img src="../assets/asinhas.png"/>
+            <div class="card" id="/asinhas.png">
+                <img src="../asinhas.png"/>
                 <h3 class="subTitle">Asinhas de frango ao barbecue</h3>
                 <p class="author">por Vania Steroski</p>
             </div>
@@ -89,7 +73,6 @@
         <h3>Todos direitos reservados, receitas Foodfy.</h3>
     </footer>
 
-    <script src="../public/script.js"></script>
-    
-</body>
-</html>
+    <script src="/script.js"></script>
+
+{% endblock %}

@@ -1,29 +1,35 @@
 const express = require("express")
 const nunjucks = require("nunjucks")
 
+//configuração do server
 const server = express()
 
+//pastas de arquivos
 server.use(express.static('public'))
+server.use(express.static('assets'))
 
-server.set("view engine", "html")
+//configuração do Nunjucks
+server.set("view engine", "njk")
 
 nunjucks.configure("views", {
     express: server
 })
 
-server.get("/layout", function(req, res){
-    return res.render("layout")
+//rotas da página
+server.get("/index", function(request, response){
+    return response.render("index")
 })
-server.get("/about", function(req, res){
-    return res.render("about")
+server.get("/about", function(request, response){
+    return response.render("about")
 })
-server.get("/recipes", function(req, res){
-    return res.render("recipes")
+server.get("/recipes", function(request, response){
+    return response.render("recipes")
 })
-server.get("/index", function(req, res){
-    return res.render("index")
+server.get("/layout", function(request, response){
+    return response.render("layout")
 })
 
+
 server.listen(5000, function(){
-    console.log("Server Running")
+    console.log("Server is Running")
 })
