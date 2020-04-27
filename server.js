@@ -4,7 +4,6 @@ const nunjucks = require("nunjucks")
 //configuração do server
 const server = express()
 const receitas = require("./data")
-const receitas1 = require("./data1")
 
 //pastas de arquivos
 server.use(express.static('public'))
@@ -20,7 +19,7 @@ nunjucks.configure("views", {
 
 //rotas da página
 server.get("/index", function(request, response){
-    return response.render("index", { items: receitas1 })
+    return response.render("index", { items: receitas })
 })
 server.get("/about", function(request, response){
     return response.render("about")

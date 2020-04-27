@@ -9,7 +9,7 @@
         
         <div class="cards">
         
-            {% for item in items %} {# esta estrutura de repetição se refere a um objeto listado no server.js que está no render "recipes" #}
+            {% for item in items.recipes %} {# esta estrutura de repetição se refere a um objeto listado no server.js que está no render "recipes" #}
                 <div class="card" id="{{item.id}}">
                     <img src="{{item.id}}"/>
                     <h3 class="subTitle">{{item.title}}</h3>

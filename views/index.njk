@@ -1,7 +1,7 @@
 {% extends "layout.njk" %}}
 
 {% block head %}
-    <title>init - Foodfy</title>
+    <title>Foodfy</title>
 {% endblock %}
 
 {% block content %}    
@@ -22,7 +22,7 @@
     <article class="maisReceitas">
         <h2 class="mais-receitas">Mais acessadas</h2>
         <div class="cards">
-            {% for item in items %}
+            {% for item in items.index %}
                 <div class="card" id="{{item.id}}">
                     <img src="{{item.id}}"/>
                     <h3 class="subTitle">{{item.title}}</h3>
