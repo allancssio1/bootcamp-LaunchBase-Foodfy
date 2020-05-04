@@ -135,56 +135,16 @@ body .sobre{
     font-family: 'Roboto-bold', sans-serif;
     font-size: 20px;
 }
-
-/*===MODAL===*/
-.modalOverlay{
-    width: 100%;
-    height: 100%;
-    position: fixed;
-    top: 0;
-    background: rgba(0, 0, 0, 0.6);
-    opacity: 0;
-    visibility: hidden;
+.errH1{
+    font-size: 50pt;
+    border: 2px solid #606060;
+    margin: auto 30%;
+    padding: 2%;
 }
-.modalOverlay .modal{
-    background: white;
-    width: 660px;
-    border-radius: 16px;
-    height: 413px;
-    position: relative;
-    margin: 10% 25%;
-    opacity: 1;
-}
-.closeModal{
-    font-family: 'Roboto', sans-serif;
-    color: #999999;
-    position: absolute;
-    bottom: 5vh;
-    left: 20vw;
-    cursor: pointer;
-}
-.iframe{
-    margin: 2.7% 2.1% 2.1% 16.3%;
-    border-radius: 15px;
-    width: 600px;
-    height: 200px;
-    margin: 30px 30px auto 30px;
-}
-.titleLegend{
-    font-size: 24px;
-    font-family: 'Roboto', sans-serif;
-    margin: 1.8% auto 1%;
-}
-.authorLegend{
-    font-size: 18px;
-    font-family: 'Roboto', sans-serif;
-    color: #777777;
-}
-
-/*===MODAL.ACTIVE===*/
-.modalOverlay.active{
-    opacity: 1;
-    visibility: visible;
+.errH2{
+    text-align: left;
+    text-indent: 30%;
+    margin: 30px auto;
 }
 
 /*===RODAPE===*/

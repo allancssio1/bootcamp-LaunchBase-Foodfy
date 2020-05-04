@@ -28,6 +28,10 @@ server.get("/recipes", function(request, response){
     return response.render("recipes", { items: receitas })
 })
 
+server.use(function(request, response){
+    response.status(404).render("noFound")
+})
+
 server.listen(5000, function(){
     console.log("Server is Running")
 })
