@@ -1,4 +1,5 @@
 const express = require("express")
+const routes = express.Router()
 const nunjucks = require("nunjucks")
 
 //configuração do server
@@ -26,6 +27,11 @@ server.get("/about", function(request, response){
 })
 server.get("/recipes", function(request, response){
     return response.render("recipes", { items: receitas })
+})
+server.get('/recipe/:id', function(request, response){
+    const id = req.params.id
+    
+    return response.render("recipe", {item: receitas})
 })
 
 server.use(function(request, response){
