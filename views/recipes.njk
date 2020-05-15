@@ -11,7 +11,7 @@
         
             {% for item in items.recipes %} {# esta estrutura de repetição se refere a um objeto listado no server.js que está no render "recipes" #}
                 <div class="card" id="{{item.id}}">
-                    <img src="{{item.id}}"/>
+                    <img src="/{{item.id}}.png"/>
                     <h3 class="subTitle">{{item.title}}</h3>
                     <p class="author">{{item.author}}</p>
                 </div>
