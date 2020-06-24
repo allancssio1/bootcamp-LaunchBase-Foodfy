@@ -22,7 +22,7 @@
     <article class="maisReceitas">
         <h2 class="mais-receitas">Mais acessadas</h2>
         <div class="cards">
-            {% for item in items.index %}
+            {% for item in items %}
                 <div class="card" id="{{item.id}}">
                     <img src="/{{item.id}}.png"/>
                     <h3 class="subTitle">{{item.title}}</h3>

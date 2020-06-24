@@ -1,100 +1,6 @@
-module.exports = {
-  recipes: [
+module.exports = [
     {
       id: "burger",
-      title: "Triplo bacon burger",
-      author: "por Jorge Relato",
-    },
-    {
-      id: "pizza",
-      title: "Pizza 4 estações",
-      author: "por Fabiana Melo",   
-    },
-    {
-      id: "espaguete",
-      title: "Espaguete ao alho",
-      author: "por Júlia Kinoto",
-    },
-    {
-      id: "lasanha",
-      title: "Lasanha mac n’ cheese",
-      author: "por Juliano Vieira",
-    },
-    {
-      id: "doce",
-      title: "Docinhos pão-do-céu",
-      author: "por Ricardo Golvea",
-    },
-    {
-      id: "asinhas",
-      title: "Asinhas de frango ao barbecue",
-      author: "por Vania Steroski",
-    },
-    {
-      id: "burger",
-      title: "Triplo bacon burger",
-      author: "por Jorge Relato",
-    },
-    {
-      id: "pizza",
-      title: "Pizza 4 estações",
-      author: "por Fabiana Melo",
-    },
-    {
-      id: "espaguete",
-      title: "Espaguete ao alho",
-      author: "por Júlia Kinoto",
-    },
-    {
-      id: "lasanha",
-      title: "Lasanha mac n’ cheese",
-      author: "por Juliano Vieira",
-    },
-    {
-      id: "doce",
-      title: "Docinhos pão-do-céu",
-      author: "por Ricardo Golvea",
-    },
-    {
-      id: "asinhas",
-      title: "Asinhas de frango ao barbecue",
-      author: "por Vania Steroski",
-    }
-  ],
-  index: [
-    {
-      id: "burger",
-      title: "Triplo bacon burger",
-      author: "por Jorge Relato"
-    },
-    {
-      id: "pizza",
-      title: "Pizza 4 estações",
-      author: "por Fabiana Melo"   
-    },
-    {
-      id: "espaguete",
-      title: "Espaguete ao alho",
-      author: "por Júlia Kinoto"
-    },
-    {
-      id: "lasanha",
-      title: "Lasanha mac n’ cheese",
-      author: "por Juliano Vieira"
-    },
-    {
-      id: "doce",
-      title: "Docinhos pão-do-céu",
-      author: "por Ricardo Golvea"
-    },
-    {
-      id: "asinhas",
-      title: "Asinhas de frango ao barbecue",
-      author: "por Vania Steroski",
-    }
-  ],
-  fullRecipes: [
-    {
       image: 'https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/launchbase/receitas/burger.png',
       title: 'Triplo bacon burger',
       author: 'Jorge Relato',
@@ -118,6 +24,7 @@ module.exports = {
       information: "Preaqueça a chapa, frigideira ou grelha por 10 minutos antes de levar os hambúrgueres. Adicione um pouquinho de óleo ou manteiga e não amasse os hambúrgueres! \n\n Você sabia que a receita que precede o hambúrguer surgiu no século XIII, na Europa? A ideia de moer a carne chegou em Hamburgo no século XVII, onde um açogueiro resolveu também temperá-la. Assim, a receita foi disseminada nos Estados Unidos por alemães da região. Lá surgiu a ideia de colocar o hambúrguer no meio do pão e adicionar outros ingredientes, como queijom tomates e alface."
     },
     {
+      id: "pizza",
       image: 'https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/launchbase/receitas/pizza.png',
       title: 'Pizza 4 estações',
       author: 'Fabiana Melo',
@@ -145,43 +52,7 @@ module.exports = {
       information: 'Pizza de liquidificador é uma receita deliciosa e supersimples de preparar. Feita toda no liquidificador, ela é bem prática para o dia a dia. Aqui no TudoGostoso você também encontra diversas delícias práticas feitas no liquidificador: massa de panqueca, torta de frango de liquidificador, pão de queijo de liquidificador, bolo de banana, bolo de chocolate e muito mais!'
     },
     {
-      image: 'https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/launchbase/receitas/asinha.png',
-      title: 'Asinhas de frango ao barbecue',
-      author: 'Vania Steroski',
-      ingredients: [
-        '12 encontros de asinha de galinha, temperados a gosto',
-        '2 colheres de sopa de farinha de trigo',
-        '1/2 xícara (chá) de óleo',
-        '1 xícara de molho barbecue'
-      ],
-      preparation: [
-        'Em uma tigela coloque o encontro de asinha de galinha e polvilhe a farinha de trigo e misture com as mãos.',
-        'Em uma frigideira ou assador coloque o óleo quando estiver quente frite até ficarem douradas.',
-        'Para servir fica bonito com salada, ou abuse da criatividade.'
-      ],
-      information: ''
-    },
-    {
-      image: 'https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/launchbase/receitas/lasanha.png',
-      title: "Lasanha mac n' cheese",
-      author: 'Juliano Vieira',
-      ingredients: [
-        'massa pronta de lasanha',
-        '400 g de presunto',
-        '400 g de mussarela ralada',
-        '2 copos de requeijão',
-        '150 g de mussarela para gratinar'
-      ],
-      preparation: [
-        'Em uma panela, coloque a manteiga para derreter.',
-        'Acrescente a farinha de trigo e misture bem com auxílio de um fouet.',
-        'Adicione o leite e misture até formar um creme homogêneo.',
-        'Tempere com sal, pimenta e noz-moscada a gosto.',
-        'Desligue o fogo e acrescente o creme de leite; misture bem e reserve.'
-      ],
-      information: 'Recheie a lasanha com o que preferir.'
-    },
-    {
+      id: "espaguete",
       image: 'https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/launchbase/receitas/macarrao.png',
       title: 'Espaguete ao alho',
       author: 'Júlia Kinoto',
@@ -206,6 +77,28 @@ module.exports = {
       information: 'Não lave o macarrão nem passe óleo ou gordura nele depois de escorrê-lo. Coloque direto na frigideira.'
     },
     {
+      id: "lasanha",
+      image: 'https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/launchbase/receitas/lasanha.png',
+      title: "Lasanha mac n' cheese",
+      author: 'Juliano Vieira',
+      ingredients: [
+        'massa pronta de lasanha',
+        '400 g de presunto',
+        '400 g de mussarela ralada',
+        '2 copos de requeijão',
+        '150 g de mussarela para gratinar'
+      ],
+      preparation: [
+        'Em uma panela, coloque a manteiga para derreter.',
+        'Acrescente a farinha de trigo e misture bem com auxílio de um fouet.',
+        'Adicione o leite e misture até formar um creme homogêneo.',
+        'Tempere com sal, pimenta e noz-moscada a gosto.',
+        'Desligue o fogo e acrescente o creme de leite; misture bem e reserve.'
+      ],
+      information: 'Recheie a lasanha com o que preferir.'
+    },
+    {
+      id: "doce",
       image: 'https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/launchbase/receitas/doce.png',
       title: 'Docinhos pão-do-céu',
       author: 'Ricardo Golvea',
@@ -226,6 +119,23 @@ module.exports = {
         'açúcar de confeiteiro e corte em quadrados.'
       ],
       information: ''
+    },
+    {
+      id: "asinhas",
+      image: 'https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/launchbase/receitas/asinha.png',
+      title: 'Asinhas de frango ao barbecue',
+      author: 'Vania Steroski',
+      ingredients: [
+        '12 encontros de asinha de galinha, temperados a gosto',
+        '2 colheres de sopa de farinha de trigo',
+        '1/2 xícara (chá) de óleo',
+        '1 xícara de molho barbecue'
+      ],
+      preparation: [
+        'Em uma tigela coloque o encontro de asinha de galinha e polvilhe a farinha de trigo e misture com as mãos.',
+        'Em uma frigideira ou assador coloque o óleo quando estiver quente frite até ficarem douradas.',
+        'Para servir fica bonito com salada, ou abuse da criatividade.'
+      ],
+      information: ''
     }
   ]
-}

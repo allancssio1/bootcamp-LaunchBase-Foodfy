@@ -34,10 +34,19 @@ server.get("/recipes", function(request, response){
 
 server.get("/recipe/:id", function(request, response){
     const recipe = request.params.id
-    const id = receitas.fullRecipes[recipe]
-    
-    
-    return response.render("recipe", {items: id})
+    const id = receitas[recipe]
+    const checkerId = receitas.find(function(element){
+        if(checkerId == id){
+            return true
+        }
+        if(!checkerId){
+            return response.render('nofound')
+        }
+        
+    })
+
+    return response.render("recipe", {items: checkerId})
+
 })
 
 server.listen(5000, function(){
