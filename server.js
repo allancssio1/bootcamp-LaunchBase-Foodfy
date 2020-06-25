@@ -4,8 +4,7 @@ const nunjucks = require("nunjucks")
 //configuração do server
 const server = express()
 const receitas = require("./data")
-const { fullRecipes } = require("./data")
-const data = require("./data")
+
 
 //pastas de arquivos
 server.use(express.static('public'))
@@ -32,23 +31,16 @@ server.get("/recipes", function(request, response){
 })
 
 
-server.get("/recipe/:id", function(request, response){
-    const recipe = request.params.id
-    const id = receitas[recipe]
-    const checkerId = receitas.find(function(element){
-        if(checkerId == id){
-            return true
-        }
-        if(!checkerId){
-            return response.render('nofound')
-        }
-        
+server.get("/recipe/:index", function(request, response){
+    const recipeIndex = request.params.index
+    const indexId = receitas.find(function(element){
+        return element.id == recipeIndex
     })
-
-    return response.render("recipe", {items: checkerId})
-
+    const items = receitas[receitas.indexOf(indexId)]
+    
+    return response.render("recipe", {items})
 })
 
 server.listen(5000, function(){
-    console.log("Server is Running")
+console.log("Server is Running")
 })

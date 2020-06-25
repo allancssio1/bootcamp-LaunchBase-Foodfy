@@ -2,9 +2,7 @@
 
 {% block content %}
 
-  {% for item in items %}
-    <img src="{{tem.image}}" alt="{{item.title}}">
-    <h1>{{item.title}}</h1>
-  {% endfor %}
+  <img src="{{items.image}}" alt="{{items.title}}">
+  <h1>{{items.title}}</h1>
 
 {% endblock  %}
