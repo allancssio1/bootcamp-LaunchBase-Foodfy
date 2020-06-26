@@ -147,6 +147,11 @@ body .sobre{
     margin: 30px auto;
 }
 
+/*===PAGINA RECIPE/ID===*/
+#image-recipe img{
+    border-radius: 5px;
+}
+
 /*===RODAPE===*/
 footer{
     width: 100%;

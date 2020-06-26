@@ -2,7 +2,56 @@
 
 {% block content %}
 
-  <img src="{{items.image}}" alt="{{items.title}}">
-  <h1>{{items.title}}</h1>
+  <div id="image-recipe">
+    <img src="{{items.image}}" alt="{{items.title}}">
+  </div>
+  
+  <article class="recipe-title">
+    <h1>{{items.title}}</h1>
+    <h2>por {{items.author}}</h2>
+  </article>
+
+  <main class="recipe-main">
+    
+    <div id="ingredient">
+      <div class="flex-teme">
+        <h2>Ingredientes</h2>  
+        <h3 id="visible invisible">
+          Mostrar
+        </h3>
+      </div>
+      {% for ingredient in items.ingredients %}
+        <p>{{ingredient}}</p>
+      {% endfor %}
+    </div>
+    
+    <div id="preparation">
+      <div class="flex-teme">
+        <h2>Modo de Preparo</h2>  
+        <h3 id="visible invisible">
+          Mostrar
+        </h3>
+      </div>
+      {% for preparation in items.preparation %}
+        <p>{{preparation}}</p>
+      {% endfor %}
+    </div>
+    
+    <div id="information">
+      <div class="flex-teme">
+        <h2>Informações adicionais</h2>  
+        <h3 id="visible invisible">
+            Mostrar
+        </h3>
+      </div>
+      <p>{{items.information}}</p>
+    </div>
+  </main>
+
+  <footer>
+    <h3>Todos direitos reservados, receitas Foodfy.</h3>
+  </footer>
+
+  <script src="/script.js"></script>
 
 {% endblock  %}
