@@ -149,7 +149,51 @@ body .sobre{
 
 /*===PAGINA RECIPE/ID===*/
 #image-recipe img{
-    border-radius: 5px;
+    border-radius: 15px;
+    margin-bottom: 3.9%;
+}
+.recipe-title{
+    font-family: 'Roboto', sans-serif;
+    line-height: 40px;
+}
+.recipe-title h1{
+   font-size: 40px; 
+}
+.recipe-title h2{
+    font-size: 20px;
+    color: #999999;
+}
+.recipe-main{
+    display: flex;
+    box-sizing: border-box;
+    flex-direction: column;
+    flex-wrap: wrap;
+    text-align: left;
+    font-family: 'Roboto', sans-serif;
+    max-width: 980px;
+    width: 100%;
+    margin: 4vh auto 7vh auto;
+    line-height: 24px;
+}
+.recipe-main .flex-teme{
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    margin: 20px auto;
+}
+.recipe-main .flex-teme h2{
+    font-size: 30px;
+}
+.recipe-main .flex-teme h3{
+    color: #999;
+    margin-left: 10px;
+    font-size: 14px;
+}
+.recipe-main li{
+    margin-left: 2%;
+}
+.no-display{
+    display: none;
 }
 
 /*===RODAPE===*/

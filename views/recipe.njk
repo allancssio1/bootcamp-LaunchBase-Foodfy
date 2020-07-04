@@ -1,7 +1,7 @@
 {% extends "layout.njk" %}
 
 {% block content %}
-
+  
   <div id="image-recipe">
     <img src="{{items.image}}" alt="{{items.title}}">
   </div>
@@ -16,36 +16,35 @@
     <div id="ingredient">
       <div class="flex-teme">
         <h2>Ingredientes</h2>  
-        <h3 id="visible invisible">
-          Mostrar
-        </h3>
+        <h3 class="buttom-ingredient">Esconder</h3>
       </div>
-      {% for ingredient in items.ingredients %}
-        <p>{{ingredient}}</p>
-      {% endfor %}
+        <ul>
+        {% for ingredient in items.ingredients %}
+          <li class="content-ingredient">{{ingredient}}</li>
+        {% endfor %}
+        </ul>
     </div>
     
     <div id="preparation">
       <div class="flex-teme">
         <h2>Modo de Preparo</h2>  
-        <h3 id="visible invisible">
-          Mostrar
-        </h3>
+        <h3 class="buttom-preparation">Esconder</h3>
       </div>
-      {% for preparation in items.preparation %}
-        <p>{{preparation}}</p>
-      {% endfor %}
+        <ul>
+        {% for preparation in items.preparation %}
+          <li class="content-preparation">{{preparation}}</li>
+        {% endfor %}
+        </ul>
     </div>
     
     <div id="information">
       <div class="flex-teme">
         <h2>Informações adicionais</h2>  
-        <h3 id="visible invisible">
-            Mostrar
-        </h3>
+        <h3 class="buttom-information">Esconder</h3>
       </div>
-      <p>{{items.information}}</p>
-    </div>
+      <div>
+        <p class="content-information">{{items.information}}</p>
+      </div>
   </main>
 
   <footer>
