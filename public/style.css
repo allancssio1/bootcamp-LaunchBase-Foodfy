@@ -1,9 +1,16 @@
-@import 'https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap&subset=latin-ext';
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+:root{
+    --color-links-primary: #6558C3;
+    --color-text-primary: #111111;
+    --font-text-roboto: 'Roboto', sans-serif; 
+}
 
 
 *{
     margin: 0;
     padding: 0;
+    text-decoration: none;
 }
 
 body{
@@ -12,30 +19,25 @@ body{
 }
 
 header{
-    text-align: left;
-    margin: 4vh auto 7vh auto;
-    width: 100%;
     max-width: 980px;
+    width: 100%;
+    padding: 32px 0px;
+    height: 5vh;
 }
 .navegacao{
     width: 100%;
     max-width: 980px;
+    font-family: var(--font-text-roboto);
+    display: flex;
 }
-header .navegacao .foodfy{
-    position: absolute;
-    left: 15%;
-    margin: auto;
+.navegacao a {
+    color: var(--color-text-primary);
 }
-header a{
-    text-decoration: none;
-    color: #000000;
+.navegacao a:first-child{
+    margin: 0px 220px;
 }
-.navSobre{
-    margin: auto 3% auto 30%;
-}
-.navSobre, .navReceitas{
-    font-size: 12pt;
-    font-family: 'Roboto-Regular', sans-serif;
+.navegacao a:last-child{
+    margin-left: 32px;
 }
 
 .artCenter{
@@ -59,7 +61,7 @@ main #titleIndex{
     margin-bottom: 10px;
 }
 main #paragrafoCenter{
-    font-family: 'Roboto', sans-serif;
+    font-family: var(--font-text-roboto);
     font-size: 18px;
     color: rgba(0, 0, 0, 0.7);    
     line-height: 28px;
@@ -76,7 +78,7 @@ main #paragrafoCenter{
     max-width: 980px;
 }
 article .mais-receitas{
-    color: #111111;
+    color: var(--color-text-primary);
     font-size: 24px;
     font-family: 'Roboto-Bold', sans-serif;
     text-align: left;
@@ -88,7 +90,7 @@ article .mais-receitas{
     margin: 2vh 20%;
     gap: 20px;
 }
-article .card{
+.card{
     text-align: left;
     line-height: 16pt;
     cursor: pointer;
@@ -99,14 +101,14 @@ article .card{
     margin: 2vh auto;
 }
 .card h3{
-    color: #111111;
+    color: var(--color-text-primary);
     font-size:18px;
-    font-family: 'Roboto', sans-serif;
+    font-family: var(--font-text-roboto);
 }
 .card p{
     font-size: 14px;
     color: #777777;
-    font-family: 'Roboto', sans-serif;
+    font-family: var(--font-text-roboto);
 }
 
 /*===SOBRE===*/
@@ -116,9 +118,6 @@ body .sobre{
     width: 100%;
     max-width: 980px;
 }
-/* body header nav a #navSobre{
-    font-family: 'Roboto-Bold', sans-serif;
-} */
 .sobre #sobreFoodfy{
     font-size: 24px;
     font-family: 'Roboto-bold', sans-serif;
@@ -126,7 +125,7 @@ body .sobre{
 .sobre .sobreParagrafo{
     font-size: 18px;
     margin: 5vh auto;
-    font-family: 'Roboto', sans-serif;
+    font-family: var(--font-text-roboto);
     color: #444444;
     line-height: 28px;
     width: 100%;
@@ -148,12 +147,12 @@ body .sobre{
 }
 
 /*===PAGINA RECIPE/ID===*/
-#image-recipe img{
+div#image-recipe img{
     border-radius: 15px;
     margin-bottom: 3.9%;
 }
 .recipe-title{
-    font-family: 'Roboto', sans-serif;
+    font-family: var(--font-text-roboto);
     line-height: 40px;
 }
 .recipe-title h1{
@@ -169,7 +168,7 @@ body .sobre{
     flex-direction: column;
     flex-wrap: wrap;
     text-align: left;
-    font-family: 'Roboto', sans-serif;
+    font-family: var(--font-text-roboto);
     max-width: 980px;
     width: 100%;
     margin: 4vh auto 7vh auto;
@@ -185,15 +184,119 @@ body .sobre{
     font-size: 30px;
 }
 .recipe-main .flex-teme h3{
-    color: #999;
+    color: #a8a0a0;
     margin-left: 10px;
     font-size: 14px;
+    cursor: pointer;
 }
 .recipe-main li{
     margin-left: 2%;
 }
 .no-display{
     display: none;
+}
+
+/* ===ADMIN=== */
+#header-admin{
+    box-sizing: border-box;
+    max-width: 1400px;
+    width: 100%;
+    background-color: var(--color-text-primary);
+    display: flex;
+    text-align: left;
+    align-items: center;
+    padding: 32px 220px;
+}
+.card-recipes{
+    width: 100%;
+    box-sizing: border-box;
+    font-family: var(--font-text-roboto);
+    padding: 0px 220px;
+    text-align: left;
+}
+.card-recipes #grid-recipes{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+}
+.card-recipes .recipe-item{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    column-gap: 16px;
+}
+.card-recipes .recipe-item img{
+    width: 180px;
+    border-radius: 8px;
+}
+.card-recipes .details-recipe{
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    flex-wrap: nowrap;
+    line-height: 21px;
+}
+.card-recipes .details-recipe h3{
+    font-weight: 300;
+    font-size: 18px;
+    color: var(--color-text-primary)
+}
+.card-recipes .details-recipe h4{
+    font-weight: 300;
+    font-size: 14px;
+    color: #777777
+}
+.card-recipes .details-recipe a{
+    text-decoration: none;
+    font-weight: bold;
+    color: var(--color-links-primary);
+    font-size: 14px;
+    line-height: 32px;
+}
+.card-recipes .form-header{
+    display: flex;
+    justify-content: space-between;
+}
+.card-recipes .form-header button[type='submit']{
+    background-color: var(--color-links-primary);
+    border: none;
+    border-radius: 4px;
+    font-family: var(--font-text-roboto);
+    color: white;
+    font-size: 16px;
+    height: 36px;
+    padding: 8px 20px;
+    display: flex;
+    text-align: center;
+    justify-items: center;
+}
+.card-recipes form,
+.card-recipes form button{
+    line-height: 36px;
+    font-size: 16px;
+    font-weight: bold;
+}
+.form-items{
+    margin: 12px 0;
+}
+.form-items div{
+    color: var(--color-text-primary);
+}
+.form-items input{
+    width: 100%;
+    height: 40px;
+    padding: 4px;
+    border: 1px solid #D1D1D1;
+    border-radius: 4px;
+}
+.form-items:last-child input{
+    min-height: 230px;
+}
+.card-recipes form button{
+    text-decoration: none;
+    background: none;
+    border: none;
+    color: var(--color-links-primary);
+    cursor: pointer;
 }
 
 /*===RODAPE===*/

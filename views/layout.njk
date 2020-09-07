@@ -9,17 +9,19 @@
     
 </head>
 <body>
-    <header>
-        <nav class="navegacao">
-            <a href="/index" class="foodfy">
-                <img src="/logo.png" alt="logo foodfy"/>
-            </a>
-            <a href="/about" class="navSobre">Sobre</a>
-            <a href="/recipes" class="navReceitas">Receitas</a>
-        </nav>
-    </header>
-     
+    {% block header %}
+        <header>
+            <nav class="navegacao">
+                <a href="/index" class="foodfy">
+                    <img src="/logo.png" alt="logo foodfy"/>
+                </a>
+                <a href="/about" class="navSobre">Sobre</a>
+                <a href="/recipes" class="navReceitas">Receitas</a>
+            </nav>
+        </header>
+    {% endblock %}
     {% block content %}{% endblock %}
 
+    {% block scripts %}{% endblock  %}
 </body>
 </html>

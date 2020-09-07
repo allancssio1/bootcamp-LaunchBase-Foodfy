@@ -1,0 +1,47 @@
+{% extends 'headerAdmin.njk' %}
+
+{% block content %}
+<section class="card-recipes">
+  
+  <header class="form-header">
+    <h2>Criar receitas</h2>
+    <button type="submit">Salvar receita</button>
+  </header>
+{# method="POST"
+    action="/admin/recipes" #}
+  <form
+    class="form-recipes"
+    >
+
+    <div class="form-items">
+      <div>Imagem da receita</div>
+      <input type="text" name="image"/>
+    </div>
+
+    <div class="form-items">
+      <div>Ingrediente</div>
+      <div id="ingredients">
+        <input type="text" name="ingredient[]">
+      </div>
+      <button type="button" class="add-ingredient">Adicionar novo ingrediente</button>
+    </div>
+
+    <div class="form-items">
+      <div>Modo de preparo</div>
+      <input type="text" name="preparation">
+      <button type="button" class="add-preparation">Adicionar modo de preparo</button>
+    </div>
+
+    <div class="form-items">
+      <div>Informações adicionais</div>
+      <input type="text" name="information">
+    </div>
+
+  </form>
+
+</section>
+{% endblock  %}
+
+{% block scripts %}
+  <script src="script.js"></script>
+{% endblock  %}
