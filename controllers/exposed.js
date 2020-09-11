@@ -1,23 +1,25 @@
-const receitas = require("../data.js")
+const data = require("../data.json")
 
-exports.index = function(req, res){
-  return res.render("exposed/index", { items: receitas })
+exports.index = function (req, res) {
+  return res.render("exposed/index", { items: data.recipes })
 }
 
-exports.about = function(req, res){
+exports.about = function (req, res) {
   return res.render("exposed/about")
 }
 
-exports.recipes = function(req, res){
-  return res.render("exposed/recipes", { items: receitas })
+exports.recipes = function (req, res) {
+  return res.render("exposed/recipes", { items: data.recipes })
 }
 
-exports.show = function(req, res){
-  const recipeId = req.params.id
-  const indexId = receitas.find(function(element){
-      return element.id == recipeId
+exports.show = function (req, res) {
+  const { id } = req.params
+
+  const foundRecipe = data.recipes.find(function (recipe) {
+    return recipe.id == id
   })
-  const items = receitas[receitas.indexOf(indexId)]
+
+  if (!foundRecipe) return res.render('exposed/nofound')
   
-  return res.render("exposed/show", {items})
+  return res.render("exposed/show", { items: foundRecipe })
 }

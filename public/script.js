@@ -1,22 +1,34 @@
 const cards = document.querySelectorAll('.card')
-const addIngredient = document.querySelector('add-ingredient') 
 
 for(let card of cards){
     card.addEventListener('click', function () {
         const idCard = card.getAttribute('id')
-        window.location.href = `/recipe/${idCard}`
+        window.location.href = `/exposed/${idCard}`
     } )
 }
 
-addIngredient.addEventListener('click', function () {
+function addIngredient() {
     const ingredients = document.querySelector('#ingredients')
-    const ingredient = document.querySelectorAll('.ingredient')
-
+    const ingredient = document.querySelectorAll('#ingredients input')
+    
     const newIngredient = ingredient[ingredient.length - 1].cloneNode(true)
 
-    if (newIngredient.children[0].value == "") return false
+    if (newIngredient.value == "") return false     
     
-    newIngredient.children[0].value = ""
+    newIngredient.value = ""
     ingredients.appendChild(newIngredient)
-    console.log(ingredients)
-})
+}
+function addPreparation() {
+    const preparations = document.querySelector('#preparations')
+    const preparation = document.querySelectorAll('#preparations input')
+    const newPreparation = preparation[preparation.length - 1].cloneNode(true)
+
+    if(newPreparation.value == "") return false
+
+    newPreparation.value = ""
+    preparations.appendChild(newPreparation)
+    
+}
+document.querySelector('.add-ingredient').addEventListener('click', addIngredient)
+
+document.querySelector('.add-preparation').addEventListener('click', addPreparation)

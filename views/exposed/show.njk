@@ -1,6 +1,7 @@
 {% extends "layout.njk" %}
 
 {% block content %}
+<section class="card-recipes">
   
   <div id="image-recipe">
     <img src="{{items.image}}" alt="{{items.title}}">
@@ -50,7 +51,7 @@
   <footer>
     <h3>Todos direitos reservados, receitas Foodfy.</h3>
   </footer>
-
+</section>
   {% include 'scriptShow.njk' %}
 
 {% endblock  %}
