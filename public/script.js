@@ -1,3 +1,5 @@
+const { all } = require("../routes")
+
 const cards = document.querySelectorAll('.card')
 
 for(let card of cards){

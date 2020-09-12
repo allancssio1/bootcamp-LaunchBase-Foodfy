@@ -1,7 +1,7 @@
 {
   "recipes": [
     {
-      "id": 1,
+      "id": "1",
       "title": "Triplo bacon burger",
       "author": "Jorge Relato",
       "image": "https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/launchbase/receitas/burger.png",
@@ -22,7 +22,7 @@
         "Faça no máximo 4 camadas por forma e leve para congelar.",
         "Retire do congelador, frite ou asse e está pronto."
       ],
-      "information": "  Preaqueça a chapa, frigideira ou grelha por 10 minutos antes de levar os hambúrgueres. Adicione um pouquinho de óleo ou \r\nmanteiga e não amasse os hambúrgueres! \n\n Você sabia que a receita que precede o hambúrguer surgiu no século XIII, na \r\nEuropa? A ideia de moer a carne chegou em Hamburgo no século XVII, onde um açogueiro resolveu também temperá-la. Assim, a \r\nreceita foi disseminada nos Estados Unidos por alemães da região. Lá surgiu a ideia de colocar o hambúrguer no meio do pão e \r\nadicionar outros ingredientes, como queijo tomates e alface."
+      "information": "Preaqueça a chapa, frigideira ou grelha por 10 minutos antes de levar os hambúrgueres. Adicione um pouquinho de óleo ou manteiga e não amasse os hambúrgueres! Você sabia que a receita que precede o hambúrguer surgiu no século XIII, na Europa? A ideia de moer a carne chegou em Hamburgo no século XVII, onde um açogueiro resolveu também temperá-la. Assim, a receita foi disseminada nos Estados Unidos por alemães da região. Lá surgiu a ideia de colocar o hambúrguer no meio do pão e adicionar outros ingredientes, como queijo tomates e alface."
     },
     {
       "id": 2,
@@ -50,10 +50,10 @@
         "Cubra a massa com mussarela ralada, tomate e orégano a gosto.",
         "Leve novamente ao forno até derreter a mussarela."
       ],
-      "information": "  'Pizza de liquidificador é uma receita deliciosa e supersimples de preparar. Feita toda no liquidificador, ela é bem \r\nprática para o dia a dia. Aqui no TudoGostoso você também encontra diversas delícias práticas feitas no liquidificador: \r\nmassa de panqueca, torta de frango de liquidificador, pão de queijo de liquidificador, bolo de banana, bolo de chocolate e \r\nmuito mais!"
+      "information": "Pizza de liquidificador é uma receita deliciosa e supersimples de preparar. Feita toda no liquidificador, ela é bem prática para o dia a dia. Aqui no TudoGostoso você também encontra diversas delícias práticas feitas no liquidificador: massa de panqueca, torta de frango de liquidificador, pão de queijo de liquidificador, bolo de banana, bolo de chocolate e muito mais!"
     },
     {
-      "id": 3,
+      "id": "3",
       "title": "Espaguete ao alho",
       "author": "Júlia Kinoto",
       "image": "https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/launchbase/receitas/macarrao.png",
@@ -75,7 +75,7 @@
         "O dente de alho, serve para você untar os pratos onde serão servidos o macarrão.",
         "Coloque as porções nos pratos já com o cheiro do alho, e enfeite com algumas ervas."
       ],
-      "information": "  Não lave o macarrão nem passe óleo ou gordura nele depois de escorrê-lo. Coloque direto na frigideira."
+      "information": "Não lave o macarrão nem passe óleo ou gordura nele depois de escorrê-lo. Coloque direto na frigideira."
     },
     {
       "id": 4,
@@ -96,7 +96,7 @@
         "Tempere com sal, pimenta e noz-moscada a gosto.",
         "Desligue o fogo e acrescente o creme de leite; misture bem e reserve."
       ],
-      "information": "  Recheie a lasanha com o que preferir."
+      "information": "Recheie a lasanha com o que preferir."
     },
     {
       "id": 5,
@@ -119,7 +119,7 @@
         "Despeje em assadeira retangular média, untada e leve ao forno médio (180°C), por aproximadamente 45 minutos. Depois de frio, polvilhe, com o",
         "açúcar de confeiteiro e corte em quadrados."
       ],
-      "information": "  "
+      "information": ""
     },
     {
       "id": 6,
@@ -137,7 +137,28 @@
         "Em uma frigideira ou assador coloque o óleo quando estiver quente frite até ficarem douradas.",
         "Para servir fica bonito com salada, ou abuse da criatividade."
       ],
-      "information": "  "
+      "information": ""
+    },
+    {
+      "id": "7",
+      "title": "Filé de Frango com Couve Flor ao Fornoooqq",
+      "author": "Paulo Marchado",
+      "image": "https://img.itdg.com.br/tdg/images/recipes/000/010/842/38696/38696_original.jpg?mode=crop&width=710&height=400",
+      "ingredients": [
+        "500 g de filé de frango",
+        "água",
+        "1 xícara de farinha de rosca",
+        "2 ovos batidos",
+        "1 limão",
+        "pimenta-do-reino a gosto"
+      ],
+      "preparation": [
+        "Tempere os filés de frango com limão, sal e pimenta do reino, reserve-os",
+        "Bata ligeiramente 2 ovos",
+        "Pegue o filé de frango passe na farinha de trigo, em seguida nos ovos batidos e depois na farinha de rosca.",
+        "Frite-os em óleo bem quente."
+      ],
+      "information": "    \r\n  "
     }
   ]
 }

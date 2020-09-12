@@ -15,21 +15,21 @@
 
 <div class="form-items">
   <div>Ingrediente</div>
-  {% for item in items.ingredients %}
-    <div id="ingredients">
-      <input type="text" name="ingredients[]" value="{{item}}" placeholder="">
-    </div>
-  {% endfor %}
+        <div id="ingredients">
+          {% for item in items.ingredients %}
+            <input type="text" name="ingredients[]" value="{{item}}">
+          {% endfor %}
+        </div>
   <button type="button" class="add-ingredient">Adicionar novo ingrediente</button>
 </div>
 
 <div class="form-items">
   <div>Modo de preparo</div>
-  {% for item in items.preparation %}
-    <div id="preparations">
-      <input type="text" name="preparation[]" value="{{item}}" placeholder="">
-    </div>
-  {% endfor %}
+        <div id="preparations">
+          {% for item in items.preparation %}
+            <input type="text" name="preparation[]" value="{{item}}">
+          {% endfor %}
+        </div>
   <button type="button" class="add-preparation">Adicionar modo de preparo</button>
 </div>
 

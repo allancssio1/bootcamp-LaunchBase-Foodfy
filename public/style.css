@@ -148,17 +148,25 @@ body .sobre{
 }
 
 /*===PAGINA RECIPE/ID===*/
-div#image-recipe img{
-    max-width: 100%;
-    border-radius: 15px;
+#image-recipe{
+    max-width: 910px;
+    width: 100%;
+    height: 280px;
     margin-bottom: 32px;
+}
+#image-recipe img{
+    object-fit: cover;
+    border-radius: 15px;
+    width: 100%;
+    height: 100%;
 }
 .recipe-title{
     font-family: var(--font-text-roboto);
-    line-height: 40px;
+    line-height: 42px;
+    text-align: center;
 }
 .recipe-title h1{
-   font-size: 40px; 
+   font-size: 36px; 
 }
 .recipe-title h2{
     font-size: 20px;
@@ -305,9 +313,10 @@ div#image-recipe img{
     border-radius: 4px;
     margin-bottom: 8px;
 }
-.form-items:last-child #text-area-last-input{
+.form-items #text-area-last-input{
     padding: 8px;
     min-height: 230px;
+    max-width: 910px;
     width: 100%;
 }
 .form-items input::placeholder{
@@ -321,6 +330,9 @@ div#image-recipe img{
     color: var(--color-links-primary);
     cursor: pointer;
 }
+.card-recipes button:hover{
+    color:  #423699;
+}
 .form-header .buttons-delete-salve{
     display: flex;
 }
@@ -329,7 +341,9 @@ div#image-recipe img{
     background-color: #DC4747;
     margin-right: 16px;
 }
-
+.form-header .buttons-delete-salve #button-delete:hover{
+    background-color: #c43c3c;
+}
 /*===RODAPE===*/
 footer{
     width: 100%;
