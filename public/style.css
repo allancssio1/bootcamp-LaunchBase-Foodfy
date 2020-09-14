@@ -202,6 +202,9 @@ body .sobre{
     font-weight: 300;
     margin-left: 20px;
 }
+#information{
+    min-height: 256px;
+}
 .content-information{
     color: #444444;
     font-weight: 300;
@@ -259,21 +262,22 @@ body .sobre{
     display: grid;
     grid-template-columns: 1fr 2fr;
     column-gap: 16px;
+    max-height: 80px;
 }
-
 .card-recipes .image-recipe img{
     border-radius: 8px;
     object-fit: cover;
-    width: 100%;
-    height: 100%;
+    max-height: 100px;
+    width: 172px;
+    height: 80px;
 }
-
 .card-recipes .details-recipe{
     display: flex;
     flex-direction: column;
     text-align: left;
     flex-wrap: nowrap;
     line-height: 21px;
+    box-sizing: border-box;
 }
 .card-recipes .details-recipe h3{
     font-weight: 300;
@@ -318,6 +322,7 @@ body .sobre{
     min-height: 230px;
     max-width: 910px;
     width: 100%;
+    margin-bottom: 32px;
 }
 .form-items input::placeholder{
     color: #6d6d6d;
@@ -330,9 +335,6 @@ body .sobre{
     color: var(--color-links-primary);
     cursor: pointer;
 }
-.card-recipes button:hover{
-    color:  #423699;
-}
 .form-header .buttons-delete-salve{
     display: flex;
 }
@@ -341,9 +343,7 @@ body .sobre{
     background-color: #DC4747;
     margin-right: 16px;
 }
-.form-header .buttons-delete-salve #button-delete:hover{
-    background-color: #c43c3c;
-}
+
 /*===RODAPE===*/
 footer{
     width: 100%;

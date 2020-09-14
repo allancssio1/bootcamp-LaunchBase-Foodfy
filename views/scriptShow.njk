@@ -5,7 +5,7 @@ const buttomPreparation = document.querySelector('.buttom-preparation')
 const buttomInformation = document.querySelector('.buttom-information')
 const ingredients = document.querySelectorAll('.content-ingredient')
 const preparations = document.querySelectorAll('.content-preparation')
-const informations = document.querySelectorAll('.content-information')
+const informations = document.querySelector('.content-information')
 
 function mostrar (element) {
     if (element == 'Esconder') {
@@ -49,14 +49,10 @@ buttomPreparation.addEventListener('click', function () {
 buttomInformation.addEventListener('click', function () {
     if (mostrar (buttomInformation.innerHTML) == true) {
         buttomInformation.innerHTML = 'Mostrar'
-        for (const information of informations) {
-            information.classList.add('no-display')
-        }
+        informations.classList.add('no-display')
     }else if( esconder (buttomInformation.innerHTML) == true){
         buttomInformation.innerHTML = 'Esconder'
-        for (const information of informations) {
-            information.classList.remove('no-display')
-        }
+        informations.classList.remove('no-display')
     }
 })
 </script>

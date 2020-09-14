@@ -1,6 +1,5 @@
 const data = require('../data.json')
 const fs = require('fs')
-const {valueInput} = require("../utils")
 
 exports.index = function (req, res) {
   return res.render('admin/recipes/index', { items: data.recipes })
@@ -67,7 +66,8 @@ exports.edit = function (req, res) {
 
   if (!foundRecipe) return res.render('exposed/nofound')
 
-  return res.render('admin/recipes/edit', { items: foundRecipe })
+
+  return res.render('admin/recipes/edit', { items: foundRecipe})
 }
 
 exports.put = function (req, res) {
@@ -79,19 +79,13 @@ exports.put = function (req, res) {
       return true
     }
   })
- console.log(req.body.preparation)
   if (!foundRecipe) return res.render('exposed/nofound')
   
   const recipe = {
     ...foundRecipe,
-    title: req.body.title,
-    author: req.body.author,
-    image: req.body.image,
-    ingredients: req.body.ingredients,
-    preparation: req.body.preparation,
-    information: req.body.information
+    ...req.body
   }
-  
+
   data.recipes[index] = recipe
   
   fs.writeFile('data.json', JSON.stringify(data, null, 2), function (err) {

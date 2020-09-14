@@ -15,27 +15,35 @@
 
 <div class="form-items">
   <div>Ingrediente</div>
-        <div id="ingredients">
-          {% for item in items.ingredients %}
-            <input type="text" name="ingredients[]" value="{{item}}">
-          {% endfor %}
-        </div>
+    <div id="ingredients">
+      {% if not items.ingredients %}
+        <input type="text" name="ingredients[]" value="">
+      {% else %}
+        {% for item in items.ingredients %}
+          <input type="text" name="ingredients[]" value="{{item}}">
+        {% endfor %}
+      {% endif %}
+    </div>
   <button type="button" class="add-ingredient">Adicionar novo ingrediente</button>
 </div>
 
 <div class="form-items">
   <div>Modo de preparo</div>
-        <div id="preparations">
-          {% for item in items.preparation %}
-            <input type="text" name="preparation[]" value="{{item}}">
-          {% endfor %}
-        </div>
+    <div id="preparations">
+
+      {% if not items.preparation %}
+        <input type="text" name="preparation[]" value="">
+      {% else %}
+        {% for item in items.preparation %}
+          <input type="text" name="preparation[]" value="{{item}}">
+        {% endfor %}
+      {% endif %}
+
+    </div>
   <button type="button" class="add-preparation">Adicionar modo de preparo</button>
 </div>
 
 <div class="form-items">
   <div>Informações adicionais</div>
-  <textarea id="text-area-last-input" cols="130" rows="10" wrap="hard" name="information">
-    {{items.information}}
-  </textarea>
+  <textarea id="text-area-last-input" name="information">{{items.information}}</textarea>
 </div>
