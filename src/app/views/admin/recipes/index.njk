@@ -1,32 +1,24 @@
 {% extends 'headerAdmin.njk' %}
 
 {% block content %}
-  <section class="card-recipes">
+  <main class="card-recipes">
     
     <header class="form-header">
       <h2>Gerencoiar receitas</h2>
     </header>
-
     <div id="grid-recipes">
-      
-      {% for item in items %}
-        
+      {% for recipe in recipes %}
         <article class="recipe-item">
-         
           <div class="image-recipe">
-            <img src="{{item.image}}" alt="{{item.image}}">
+            <img src="{{recipe.image}}" alt="{{recipe.image}}">
           </div>
-         
           <div class="details-recipe">
-            <h3 id="title-recipe">{{item.title}}</h3>
-            <h4 id="author-recipe">por {{item.author}}</h4>
-            <a href="/admin/recipes/{{item.id}}">Visualizar</a>
+            <h3 id="title-recipe">{{recipe.title}}</h3>
+            <h4 id="author-recipe">por {{recipe.chef_name}}</h4>
+            <a href="/admin/recipes/{{recipe.id}}">Visualizar</a>
           </div>
-        
         </article>
-      
       {% endfor %}
-      
     </div>
-  </section>
+  </main>
 {% endblock %}

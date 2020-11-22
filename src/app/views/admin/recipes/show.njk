@@ -1,54 +1,60 @@
 {% extends 'headerAdmin.njk' %}
 
 {% block content %}
-<section class="card-recipes">
+<main class="card-recipes">
   <div class="title-show-recipes-admin">
-    <h2>Receita: {{items.title}}</h2>
-    <a href="/admin/recipes/{{items.id}}/edit" class="edit-recipe">Editar receita</a>
+    <h2>Receita: {{recipe.title}}</h2>
+    <a href="/admin/recipes/{{recipe.id}}/edit" class="edit-recipe">Editar receita</a>
   </div>
   <div id="image-recipe">
-      <img src="{{items.image}}" alt="{{items.title}}">
+      <img src="{{recipe.image}}" alt="{{recipe.title}}">
   </div>
   
   <article class="recipe-title">
-    <h1>{{items.title}}</h1>
-    <h2>por {{items.author}}</h2>
+    <h1>{{recipe.title}}</h1>
+    <h2>por {{recipe.chef_name}}</h2>
   </article>
 
-  <main class="recipe-main">
+  <section class="recipe-main">
     
-    <div id="ingredient">
+    <div class="details">
       <div class="flex-teme">
         <h2>Ingredientes</h2>  
-        <h3 class="buttom-ingredient">Esconder</h3>
+        <h3 class="button">Esconder</h3>
       </div>
+      <div class="content">
         <ul>
-        {% for ingredient in items.ingredients %}
-          <li class="content-ingredient">{{ingredient}}</li>
+        {% for ingredient in recipe.ingredients %}
+          <li>{{ingredient}}</li>
         {% endfor %}
         </ul>
+      </div>
     </div>
     
-    <div id="preparation">
+    <div class="details">
       <div class="flex-teme">
         <h2>Modo de Preparo</h2>  
-        <h3 class="buttom-preparation">Esconder</h3>
+        <h3 class="button">Esconder</h3>
       </div>
+      <div class="content">
         <ul>
-        {% for preparation in items.preparation %}
-          <li class="content-preparation">{{preparation}}</li>
+        {% for preparation in recipe.preparation %}
+          <li>{{preparation}}</li>
         {% endfor %}
         </ul>
+      </div>
     </div>
     
-    <div id="information">
+    <div class="details">
       <div class="flex-teme">
         <h2>Informações adicionais</h2>  
-        <h3 class="buttom-information">Esconder</h3>
+        <h3 class="button">Esconder</h3>
       </div>
-      <div>
-        <p class="content-information">{{items.information}}</p>
+      <div class="content">
+        <p>{{recipe.information}}</p>
       </div>
-  </main>
+  </section>
+</main>
   {% include "scriptShow.njk" %}
-{% endblock  %}
+
+{% endblock %}

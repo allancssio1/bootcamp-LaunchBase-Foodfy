@@ -1,37 +1,29 @@
 {% extends "layout.njk" %}
 
 {% block head %}
-    <title>recipes - Foodfy</title>
+  <title>recipes - Foodfy</title>
 {% endblock %}
-
+{% block filter %}
+  <form action="/recipes/search" method="get" class="form_filter">
+    <input type="text" name="filter" value="{{filter}}" placeholder="Nome da receita" class="input_filter">
+    <button type="submit" class="button_filter">Procurar</button>
+  </form>
+{% endblock  %}
 {% block content %}
-    <article class="more-recipes">
-        <div class="cards">
-            {% for item in items %}
-                <div class="card" id = "{{item.id}}">
-                    <div class="image-recipe">
-                        <img src="{{item.image}}"/>
-                    </div>
-                    <h3 class="subtitle">{{item.title}}</h3>
-                    <p class="author">{{item.author}}</p>
-                </div>
-            {% endfor %}
-            {% for item in items %}
-                <div class="card" id = "{{item.id}}">
-                    <div class="image-recipe">
-                        <img src="{{item.image}}"/>
-                    </div>
-                    <h3 class="subtitle">{{item.title}}</h3>
-                    <p class="author">{{item.author}}</p>
-                </div>
-            {% endfor %}
-        </div>    
-    </article>
-
-    <footer>
-        <h3>Todos direitos reservados, receitas Foodfy.</h3>
-    </footer>
-
-    <script src="/script.js"></script>
+<main>
+  <article class="more-recipes">
+    <div class="cards">
+      {% for recipe in recipes %}
+        <div class="card" id="{{recipe.id}}">
+          <div class="image-recipe">
+            <img src="{{recipe.image}}"/>
+          </div>
+          <h3 class="subtitle">{{recipe.title}}</h3>
+          <p class="author">{{recipe.chef_name}}</p>
+        </div>
+      {% endfor %}
+    </div>
+  </article>
+</main>
 
 {% endblock %}

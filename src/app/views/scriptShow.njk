@@ -1,58 +1,29 @@
 <script>
+  const details = document.querySelectorAll('.details')
 
-const buttomIngredient = document.querySelector('.buttom-ingredient')
-const buttomPreparation = document.querySelector('.buttom-preparation')
-const buttomInformation = document.querySelector('.buttom-information')
-const ingredients = document.querySelectorAll('.content-ingredient')
-const preparations = document.querySelectorAll('.content-preparation')
-const informations = document.querySelector('.content-information')
-
-function mostrar (element) {
+  function mostrar(element) {
     if (element == 'Esconder') {
       return true
     }
-}
-function esconder (element) {
+  }
+  function esconder(element) {
     if (element == 'Mostrar') {
-        return true
+      return true
     }
-}
+  }
+  for (let detail of details) {
+    const buttonOption = detail.querySelector('.button')
+    const content = detail.querySelector('.content')
+    buttonOption.addEventListener('click', () => {
+      if(mostrar(buttonOption.innerHTML) == true) {
+        buttonOption.innerHTML = "Mostrar"
+        content.classList.add('no-display')
+      }else if(esconder(buttonOption.innerHTML) == true) {
+        buttonOption.innerHTML = "Esconder"
+        content.classList.remove('no-display')
 
-buttomIngredient.addEventListener('click', function () {
-    if (mostrar (buttomIngredient.innerHTML) == true) {
-        buttomIngredient.innerHTML = 'Mostrar'
-        for (const ingredient of ingredients) {
-            ingredient.classList.add('no-display')
-        }
-    }else if( esconder (buttomIngredient.innerHTML) == true){
-        buttomIngredient.innerHTML = 'Esconder'
-        for (const ingredient of ingredients) {
-            ingredient.classList.remove('no-display')
-        }
-    }
-})
+      }
+    })
+  }
 
-buttomPreparation.addEventListener('click', function () {
-    if (mostrar (buttomPreparation.innerHTML) == true) {
-        buttomPreparation.innerHTML = 'Mostrar'
-        for (const preparation of preparations) {
-            preparation.classList.add('no-display')
-        }
-    }else if( esconder (buttomPreparation.innerHTML) == true){
-        buttomPreparation.innerHTML = 'Esconder'
-        for (const preparation of preparations) {
-            preparation.classList.remove('no-display')
-        }
-    }
-})
-
-buttomInformation.addEventListener('click', function () {
-    if (mostrar (buttomInformation.innerHTML) == true) {
-        buttomInformation.innerHTML = 'Mostrar'
-        informations.classList.add('no-display')
-    }else if( esconder (buttomInformation.innerHTML) == true){
-        buttomInformation.innerHTML = 'Esconder'
-        informations.classList.remove('no-display')
-    }
-})
 </script>

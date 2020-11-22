@@ -1,0 +1,12 @@
+{% block content %}
+
+<div class="form-items">
+  <div>Nome</div>
+  <input type="text" name="name" values="{{chef.name}}" placeholder="{{chef.name}}">
+</div>
+<div class="form-items">
+  <div>Avatar</div>
+  <input type="url" name="avatar_url" values="{{chef.avatar_url}}" placeholder="{{chef.avatar_url}}">
+</div>
+
+{% endblock content %}

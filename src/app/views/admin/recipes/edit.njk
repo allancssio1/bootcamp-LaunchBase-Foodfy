@@ -1,7 +1,7 @@
 {% extends 'headerAdmin.njk' %}
 
 {% block content %}
-<section class="card-recipes">
+<main class="card-recipes">
    
   <div class="form-recipes">
   
@@ -15,7 +15,7 @@
         
         <form id="form-delete" method="post" action="/admin/recipes?_method=DELETE" >
           <button type="submit" id="button-delete">Deletar</button>
-          <input type="hidden" name="id" value="{{items.id}}">
+          <input type="hidden" name="id" value="{{recipe.id}}">
         </form>
         
         <button type="submit" form="post">Salvar receita</button>
@@ -26,10 +26,10 @@
 
     <form id="post" method="POST" action="/admin/recipes?_method=PUT">
       {% include "admin/recipes/fields.njk" %}
-      <input type="hidden" name="id" value="{{items.id}}">
+      <input type="hidden" name="id" value="{{recipe.id}}">
     </form>
 
   </div>
-</section>
-<script src="/script.js"></script>
+</main>
+
 {% endblock  %}

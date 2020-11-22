@@ -1,22 +1,22 @@
 {% extends 'headerAdmin.njk' %}
 
 {% block content %}
-<main class="card-recipes">
+<section class="card-recipes">
   <form
     class="form-recipes"
     method="post"
-    action="/admin/recipes"
+    action="/admin/chefs"
   >
 
     <header class="form-header">
-      <h2>Criar receita</h2>
+      <h2>Criar Chef</h2>
       <button type="submit">Salvar receita</button>
     </header>
 
-    {% include "admin/recipes/fields.njk" %}
+    {% include "admin/chefs/fields.njk" %}
 
   </form>
 
-</main>
+</section>
 
-{% endblock  %}
+{% endblock content %}
