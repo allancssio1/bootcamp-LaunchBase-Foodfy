@@ -48,12 +48,24 @@ function addPreparation () {
   newPreparation.value = ""
   preparations.appendChild(newPreparation)   
 }
-document.querySelector('.add-ingredient').addEventListener('click', addIngredient)
-document.querySelector('.add-preparation').addEventListener('click', addPreparation)
-
-formDelete.addEventListener('submit', function (event) {
-  const confirmation = confirm('Deseja excluir?')
-  if (!confirmation) {
-    event.preventDefault()
-  }
-})
+if(document.querySelector('.add-ingredient')){
+  document.querySelector('.add-ingredient').addEventListener('click', addIngredient)
+}
+if(document.querySelector('.add-preparation')){
+  document.querySelector('.add-preparation').addEventListener('click', addPreparation)
+}
+if(formDelete){
+  formDelete.addEventListener('submit', function (event) {
+    const numberRecipes = Number(document.getElementById('countRecipes').innerHTML)
+    const confirmation = confirm('Deseja excluir?')
+    if (!confirmation) {
+      event.preventDefault()
+    }
+    else {
+      if(numberRecipes > 0) {
+        alert('Chef possui receitas e não pode ser deletado!')
+        event.preventDefault()
+      }
+    }
+  })
+}
