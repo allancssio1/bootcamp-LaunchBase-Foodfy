@@ -420,7 +420,7 @@ button{
 .form-items div{
   color: var(--color-text-primary);
 }
-.form-items input{
+.form-items .input{
   width: 100%;
   height: 40px;
   padding: 4px;
@@ -433,8 +433,10 @@ button{
   min-height: 230px;
   width: 100%;
   margin-bottom: 32px;
+  border: 1px solid #9b9999;
+  border-radius: 4px;
 }
-.form-items input::placeholder{
+.form-items .input::placeholder{
   color: #6d6d6d;
   font-size: 16px;
 }
@@ -442,7 +444,7 @@ button{
   width: 101%;
   height: 50px;
   padding: 4px;
-  border: 1px solid #444444;
+  border: 1px solid #9b9999;
   border-radius: 4px;
   margin-bottom: 8px;
 }
@@ -470,6 +472,37 @@ button{
 .navegacao a.userActive{
   font-weight: bolder;
 }
+.form-items .form-item-image {
+  display: grid;
+  grid-template-columns: 20% 80%;
+  width: 100%;
+  justify-content: space-around;
+}
+.form-items .form-item-image .photos-upload{
+  height: 150px;
+  width: 150px;
+}
+.form-items .form-item-image .photos-upload label{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #999999;
+  height: 100%;
+  width: 100%;
+  border-radius: 4px;
+}
+.form-items .form-item-image .photos-upload label i{
+  font-size: 50px;
+  color: #999999;
+}
+.form-items .form-item-image .photos-upload input[type="file"]{
+  display: none;
+}
+.form-items .form-item-image .photos-preview{
+  background-color: rgb(81, 81, 236);
+}
+
+
 /*===RODAPE===*/
 footer{
   width: 100%;

@@ -1,11 +1,28 @@
 <div class="form-items">
   <div>Imagem da receita</div>
-  <input type="url" name="image" value="{{recipe.image}}" placeholder="http:\\"/>
+  <div class="form-item-image">
+    <div class="photos-upload">
+    <label for="photos-input">
+      <i class="material-icons">add</i>
+    </label>
+      <input
+        type="file"
+        id="photos-input"
+        name="photos"
+        multiple accept="image/*">
+    </div>
+    <div class="photos-preview">
+      <div class="photo">
+        <img src="{{image.src}}" alt="{{image.name}}">
+        <i class="material-icons">close</i>
+      </div>
+    </div>
+  </div>
 </div>
 
 <div class="form-items">
   <div>Nome da Receita</div>
-  <input type="text" name="title" value="{{recipe.title}}" placeholder=""/>
+  <input class="input" type="text" name="title" value="{{recipe.title}}" placeholder=""/>
 </div>
 
 <div class="form-items">
@@ -32,10 +49,10 @@
   <div>Ingrediente</div>
     <div id="ingredients">
       {% if not recipe.ingredients %}
-        <input type="text" name="ingredients[]" value="">
+        <input class="input" type="text" name="ingredients[]" value="">
       {% else %}
         {% for item in recipe.ingredients %}
-          <input type="text" name="ingredients[]" value="{{item}}">
+          <input class="input" type="text" name="ingredients[]" value="{{item}}">
         {% endfor %}
       {% endif %}
     </div>
@@ -47,10 +64,10 @@
     <div id="preparations">
 
       {% if not recipe.preparation %}
-        <input type="text" name="preparation[]" value="">
+        <input class="input" type="text" name="preparation[]" value="">
       {% else %}
         {% for item in recipe.preparation %}
-          <input type="text" name="preparation[]" value="{{item}}">
+          <input class="input" type="text" name="preparation[]" value="{{item}}">
         {% endfor %}
       {% endif %}
 
