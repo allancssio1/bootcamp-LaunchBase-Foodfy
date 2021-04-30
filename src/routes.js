@@ -1,5 +1,6 @@
 const express = require('express')
 const routes = express.Router()
+const multer = require('./app/middleware/multer')
 const recipes = require('./app/controllers/recipes')
 const user = require('./app/controllers/user')
 const chefs = require('./app/controllers/chefs')
