@@ -1,5 +1,5 @@
-// const db = require('../../config/db')
 const Recipes = require('../models/Recipes')
+
 
 module.exports = {
   index (req, res) {
