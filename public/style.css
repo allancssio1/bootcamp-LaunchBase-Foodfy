@@ -499,7 +499,7 @@ button{
   display: none;
 }
 .form-items .form-item-image .photos-preview{
-  background-color: rgb(81, 81, 236);
+  display: flex;
 }
 
 
