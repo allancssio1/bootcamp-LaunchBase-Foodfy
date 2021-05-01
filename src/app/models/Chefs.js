@@ -2,15 +2,11 @@ const {date} = require('../lib/utils')
 const db = require('../../config/db')
 
 module.exports = {
-  all(callback) {
-    db.query (`SELECT chefs.*,
+  all() {
+    return db.query (`SELECT chefs.*,
       count(recipes) AS total_recipes FROM chefs
       LEFT JOIN recipes ON (recipes.chef_id = chefs.id)
-      GROUP BY chefs.id`,
-      (err, results) =>  {
-        if (err) throw `Database Error ${err}`
-        callback(results.rows)
-      }
+      GROUP BY chefs.id`
     )
   },
   find (id, callback) {
@@ -53,11 +49,6 @@ module.exports = {
       }
     )
   },
-  // count(id, callback) {
-  //   db.query(`SELECT chefs.*, count(recipes) AS total_recipes
-  //   LEFT JOIN recipes ON (recipes.chef_id = chefs.id)
-  //   GROUP chefs.id`, )
-  // },
   delete (id, callback) {
     db.query(`DELETE FROM chefs WHERE id=$1`, [id],
       (err, results) => {

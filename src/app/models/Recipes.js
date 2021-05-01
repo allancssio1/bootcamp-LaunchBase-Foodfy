@@ -21,17 +21,15 @@ module.exports = {
       }  
     )
   },
-  find(id, callback) {
-    db.query(`SELECT recipes.*, chefs.name AS chef_name FROM recipes
+  find(id) {
+    return db.query(`
+      SELECT recipes.*, chefs.name AS chef_name FROM recipes
       LEFT JOIN chefs ON (recipes.chef_id = chefs.id)
-      WHERE recipes.id = $1`, [id],
-      (err, results) =>  {
-        if (err) throw `Database error ${err}`
-        callback(results.rows[0])
-      }
+      WHERE recipes.id = $1
+    `, [id]
     )
   },
-  create(data, callback) {
+  create(data) {
     const query = `
       INSERT INTO recipes (
         image,
@@ -53,12 +51,7 @@ module.exports = {
       data.chef,
       date(Date.now()).iso
     ]
-    db.query (query, values,
-      (err, results) =>  {
-        if (err) throw `Database error ${err}`
-        callback(results.rows[0].id)
-      }  
-    )
+    return db.query(query, values)
   },
   selectOption (callback) {
     db.query(`SELECT name, id FROM chefs`,

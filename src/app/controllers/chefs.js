@@ -1,10 +1,11 @@
 const Chefs = require('../models/Chefs')
 
 module.exports = {
-  index (req, res) {
-    Chefs.all(chefs => {
-      return res.render("admin/chefs/index", {chefs})
-    })
+  async index (req, res) {
+    let result = Chefs.all()
+    const chefs = result.rows[0]
+    console.log(chefs);
+    return res.render("admin/chefs/index", {chefs})
   },
   create (req, res) {
     return res.render("admin/chefs/create")

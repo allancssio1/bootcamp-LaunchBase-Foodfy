@@ -1,5 +1,6 @@
 const Recipes = require('../models/Recipes')
 const File = require('../models/File')
+const Chefs = require('../models/Chefs')
 
 module.exports = {
   async index (req, res) {
@@ -22,26 +23,31 @@ module.exports = {
       return res.send("Please, send at least one image!")
     
     let result = await Recipes.create(req.body)
-    const recipe = result.rows[0].id
+    const recipe = result.rows[0]
 
-    await Recipes.create(req.body, recipe => {
-      return res.redirect(`/admin/recipes/${recipe}`)
-    })
+    const filePromise = req.files.map(file => File.create(file))
+    await Promise.all(filePromise)
+    const files = filePromise
+    console.log(files)
+    
+    return res.redirect(`/admin/recipes/${recipe}`)
   },
-  show (req, res) {
-    Recipes.find(req.params.id, recipe => {
-      if (!recipe) {
-        return res.render('user/nofound')
-      }
-      return res.render('admin/recipes/show', { recipe })
-    })
+  async show (req, res) {
+    let result = await Recipes.find(req.params.id) 
+    const recipe = result.rows[0]
+      
+    if (!recipe) 
+      return res.render('user/nofound')
+    
+    return res.render('admin/recipes/show', { recipe })
   },
-  edit (req, res) {
-    Recipes.find(req.params.id, recipe => {
-      Recipes.selectOption(option => {
-        return res.render('admin/recipes/edit', { recipe, chefOptions: option })
-      })
-    })
+  async edit (req, res) {
+    let result = await Recipes.find(req.params.id)
+    const recipe = result.rows[0]
+    
+    result = await Chefs.all()
+    const optionsOfChefs = result.rows
+    return res.render('admin/recipes/edit', { recipe, chefOptions: optionsOfChefs })
   },
   put (req, res) {
     if (req.body.chef == "" && req.body.title == "") {
