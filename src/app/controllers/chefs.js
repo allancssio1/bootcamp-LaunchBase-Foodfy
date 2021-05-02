@@ -2,24 +2,26 @@ const Chefs = require('../models/Chefs')
 
 module.exports = {
   async index (req, res) {
-    let result = Chefs.all()
-    const chefs = result.rows[0]
-    console.log(chefs);
+    let result = await Chefs.all()
+    const chefs = result.rows
     return res.render("admin/chefs/index", {chefs})
   },
   create (req, res) {
     return res.render("admin/chefs/create")
   },
-  post (req, res) {
+  async post (req, res) {
     const keys = Object.keys(req.body)
+
     for (key of keys) {
       if (req.body[key] == "") {
         return res.send("Preencha todos os dados")
       }
     }
-    Chefs.create (req.body, chef => {
-      return res.redirect(`/admin/chefs/${chef}`)
-    })
+
+    let result = await Chefs.create (req.body)
+    const chef = result.rows[0].id
+
+    return res.redirect(`/admin/chefs/${chef}`)
   },
   show (req, res) {
     Chefs.find(req.params.id, chef => {
