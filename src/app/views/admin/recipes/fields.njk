@@ -9,13 +9,22 @@
         type="file"
         id="photos-input"
         name="photos"
-        multiple accept="image/*">
+        multiple accept="image/*"
+        onchange="PhotosUpload.handleImageInput(event)">
     </div>
     <div class="photos-preview">
-      <div class="photo">
-        <img src="{{image.src}}" alt="{{image.name}}">
-        <i class="material-icons">close</i>
-      </div>
+      {% if files %}
+        {% for image in files %}
+          <div class="photo" id="{{image.id}}">
+            <img src="{{image.src}}" alt="{{image.name}}">
+            <i class="material-icons"
+              onclick="PhotosUpload.removeOldPhoto(event)">
+              close
+              </i>
+          </div>
+        {% endfor %}
+        <input type="hidden" name="removed_files">
+      {% endif %}
     </div>
   </div>
 </div>
