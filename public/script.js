@@ -140,6 +140,7 @@ const PhotosUpload = {
     div.onclick = PhotosUpload.removePhoto
     div.appendChild(image)
     div.appendChild(PhotosUpload.getRemoveButton())
+
     return div
   },
   removePhoto(event) {
