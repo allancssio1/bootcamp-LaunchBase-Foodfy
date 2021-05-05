@@ -80,23 +80,27 @@ const PhotosUpload = {
     PhotosUpload.input = event.target
 
     if(PhotosUpload.hasLimit(event)){
-
-      return Array.from(fileList).forEach(file => {
-        PhotosUpload.files.push(file)
-        const reader = new  FileReader()
-
-        reader.onload = () => {
-          const image = new Image()
-          image.src = String(reader.result)
-
-          const div = PhotosUpload.getContainer(image)
-          PhotosUpload.preview.appendChild(div)
-        }
-
-        reader.readAsDataURL(file)
-      }) 
-      PhotosUpload.input.files = PhotosUpload.getAllFiles()
+      PhotosUpload.updateUploadFiles()
+      
+      return
     }
+
+    Array.from(fileList).forEach(file => {
+      PhotosUpload.files.push(file)
+      const reader = new  FileReader()
+
+      reader.onload = () => {
+        const image = new Image()
+        image.src = String(reader.result)
+
+        const div = PhotosUpload.getContainer(image)
+        PhotosUpload.preview.appendChild(div)
+      }
+
+      reader.readAsDataURL(file)
+    }) 
+    PhotosUpload.updateUploadFiles()
+    
   },
   hasLimit(event){
     const {uploadLimit, input, preview} = PhotosUpload
@@ -108,7 +112,7 @@ const PhotosUpload = {
       
       return true
     }
-    
+    console.log(preview)
     let photosDiv = []
     preview.childNodes.forEach(item => {
 
@@ -143,14 +147,25 @@ const PhotosUpload = {
 
     return div
   },
+  getRemoveButton() {
+    const button = document.createElement("i")
+
+    button.classList.add('material-icons')
+    button.innerHTML = 'close'
+
+    return button
+  },
   removePhoto(event) {
     const photoDiv = event.target.parentNode //<div class="photo">
+
     const photosArray = Array.from(PhotosUpload.preview.children)
-    const index = photosArray.indexOf(photoDiv)
-   
-    //splice vai remover o item no index informado e somente ele 
+    const newFiles = photosArray.filter(file => {
+      if (file.classList.contains("photo") && !file.getAttribute('id')) return true
+    })
+    const index = newFiles.indexOf(photoDiv)
     PhotosUpload.files.splice(index, 1)
-    PhotosUpload.input.files = PhotosUpload.getAllFiles()
+
+    PhotosUpload.updateUploadFiles()
 
     photoDiv.remove()
   },
@@ -166,5 +181,9 @@ const PhotosUpload = {
     }
 
     photoDiv.remove()
+  },
+  updateUploadFiles() {
+
+    PhotosUpload.input.files = PhotosUpload.getAllFiles()
   }
 }

@@ -496,7 +496,7 @@ button{
   color: #999999;
 }
 .form-items .form-item-image .photos-upload input[type="file"]{
-  display: none;
+  display: block;
 }
 .form-items .form-item-image .photos-preview{
   display: flex;
