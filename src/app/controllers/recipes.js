@@ -18,9 +18,10 @@ module.exports = {
     if (req.body.chef == ""|| req.body.title == "") {
       return res.send('Preencha todos os campos')
     }
+    console.log(req.files)
 
     if(req.files.length == 0)
-      return res.send("Please, send at least one image!")
+      return res.send("Enviar ao menos uma imagem!")
     
     let result = await Recipes.create(req.body)
     const recipe = result.rows[0]
@@ -28,7 +29,6 @@ module.exports = {
     const filePromise = req.files.map(file => File.create(file))
     await Promise.all(filePromise)
     const files = filePromise
-    console.log(files)
     
     return res.redirect(`/admin/recipes/${recipe}`)
   },
