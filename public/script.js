@@ -112,7 +112,6 @@ const PhotosUpload = {
       
       return true
     }
-    console.log(preview)
     let photosDiv = []
     preview.childNodes.forEach(item => {
 

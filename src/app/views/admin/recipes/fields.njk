@@ -12,7 +12,7 @@
         multiple accept="image/*"
         onchange="PhotosUpload.handleImageInput(event)">
     </div>
-    <div class="photos-preview">
+    <div id="photos-preview">
       {# {% if files %} #}
         {% for image in files %}
           <div class="photo" id="{{image.id}}">
