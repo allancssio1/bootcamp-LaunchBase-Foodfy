@@ -1,6 +1,7 @@
 const Recipes = require('../models/Recipes')
 const File = require('../models/File')
 const Chefs = require('../models/Chefs')
+const Pivot = require('../models/RecipeAndFiles')
 
 module.exports = {
   async index (req, res) {
@@ -18,18 +19,17 @@ module.exports = {
     if (req.body.chef == ""|| req.body.title == "") {
       return res.send('Preencha todos os campos')
     }
-    console.log(req.files)
 
     if(req.files.length == 0)
       return res.send("Enviar ao menos uma imagem!")
-    
+
     let result = await Recipes.create(req.body)
     const recipe = result.rows[0]
-
-    const filePromise = req.files.map(file => File.create(file))
-    await Promise.all(filePromise)
-    const files = filePromise
     
+    let filesPromise = req.files.map(file => await File.create(file))
+    await Promise.all(filesPromise)
+    
+
     return res.redirect(`/admin/recipes/${recipe}`)
   },
   async show (req, res) {
