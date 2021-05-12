@@ -23,12 +23,17 @@ module.exports = {
     if(req.files.length == 0)
       return res.send("Enviar ao menos uma imagem!")
 
-    let result = await Recipes.create(req.body)
-    const recipe = result.rows[0]
+    // let result = await Recipes.create(req.body)
+    // const recipe = result.rows[0].id
     
-    let filesPromise = req.files.map(file => await File.create(file))
-    await Promise.all(filesPromise)
+    let filesPromise = req.files.map(file => File.create(file))
+    result = await filesPromise.map(promisse => console.log(promisse))
+
     
+
+    // const fileId = result.rows[0].id
+    // await Promise.all(filesPromise)
+
 
     return res.redirect(`/admin/recipes/${recipe}`)
   },
