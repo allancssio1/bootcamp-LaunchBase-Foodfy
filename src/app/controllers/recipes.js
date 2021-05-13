@@ -11,9 +11,9 @@ module.exports = {
     
   },
   async create (req, res) {
-    await Recipes.selectOption(option => {
-      return res.render('admin/recipes/create', {chefOptions: option})
-    })
+    let result = await Recipes.selectChefs()
+    const chefOptions = result.rows
+    return res.render('admin/recipes/create', { chefOptions })
   },
   async post (req, res) {
     if (req.body.chef == ""|| req.body.title == "") {
@@ -23,19 +23,13 @@ module.exports = {
     if(req.files.length == 0)
       return res.send("Enviar ao menos uma imagem!")
 
-    // let result = await Recipes.create(req.body)
-    // const recipe = result.rows[0].id
+    let result = await Recipes.create(req.body)
+    const recipeId = result.rows[0].id
     
-    let filesPromise = req.files.map(file => File.create(file))
-    result = await filesPromise.map(promisse => console.log(promisse))
+    let filesPromise = req.files.map(file => File.create({ ...file, recipe_id: recipeId }))
+    await Promise.all(filesPromise)
 
-    
-
-    // const fileId = result.rows[0].id
-    // await Promise.all(filesPromise)
-
-
-    return res.redirect(`/admin/recipes/${recipe}`)
+    return res.redirect(`/admin/recipes/${recipeId}`)
   },
   async show (req, res) {
     let result = await Recipes.find(req.params.id) 
@@ -54,13 +48,12 @@ module.exports = {
     const optionsOfChefs = result.rows
     return res.render('admin/recipes/edit', { recipe, chefOptions: optionsOfChefs })
   },
-  put (req, res) {
+  async put (req, res) {
     if (req.body.chef == "" && req.body.title == "") {
       return res.send('Preencha todos os campos')
     }
-    Recipes.update(req.body, function () {
-      return res.redirect(`/admin/recipes/${req.body.id}`)
-    })
+    Recipes.update(req.body)
+    return res.redirect(`/admin/recipes/${req.body.id}`)
   },
   delete (req, res) {
     Recipes.delete(req.body.id, () => {

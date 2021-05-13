@@ -51,31 +51,38 @@ module.exports = {
     ]
     return db.query(query, values)
   },
-  selectOption (callback) {
-    db.query(`SELECT name, id FROM chefs`,
-      (err, results) =>  {
-        if (err) throw `Database error ${err}`
-        callback(results.rows)
-      }
-    )
+  selectChefs () {
+    return db.query(`SELECT name, id FROM chefs`)
   },
-  update (data, callback) {
-    const query = `UPDATE recipes SET image=($1), title=($2), ingredients=($3), preparation=($4), information=($5), chef_id=($6)
-      WHERE id=$7`
-    const values = [data.image, data.title, data.ingredients, data.preparation, data.information, data.chef, data.id]
-    db.query (query, values, 
-      (err, results) =>  {
-        if (err) throw `Database error ${err}`
-        callback()
-      }
-    )
+  update (data) {
+    const query = `
+    UPDATE recipes SET 
+      title=($1),
+      ingredients=($2),
+      preparation=($3),
+      information=($4),
+      chef_id=($5)
+    WHERE id=$6
+    `
+
+    const values = [
+      data.title,
+      data.ingredients,
+      data.preparation,
+      data.information,
+      data.chef,
+      data.id
+    ]
+
+    return db.query (query, values)
   },
-  delete (id, callback) {
-    db.query (`DELETE FROM recipes WHERE id=$1`, [id],
-      (err, results) =>  {
-        if (err) throw `Database error ${err}`
-        callback()
-      }
-    )
+  delete (id) {
+    // let query = ``
+    
+    let query = `DELETE FROM recipes WHERE id=$1`
+    let value = [id]
+
+
+    return db.query (query, value)
   }
 }

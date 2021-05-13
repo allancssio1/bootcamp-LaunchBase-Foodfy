@@ -1,11 +1,13 @@
 {% extends 'headerAdmin.njk' %}
 
 {% block content %}
+
 <main class="card-recipes">
   <div class="title-show-recipes-admin">
     <h2>Receita: {{recipe.title}}</h2>
     <a href="/admin/recipes/{{recipe.id}}/edit" class="edit-recipe">Editar receita</a>
   </div>
+
   <div id="image-recipe">
       <img src="{{recipe.image}}" alt="{{recipe.title}}">
   </div>
