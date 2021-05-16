@@ -2,6 +2,7 @@ const Recipes = require('../models/Recipes')
 const File = require('../models/File')
 const Chefs = require('../models/Chefs')
 const Pivot = require('../models/RecipeAndFiles')
+const RecipeAndFiles = require('../models/RecipeAndFiles')
 
 module.exports = {
   async index (req, res) {
@@ -38,8 +39,10 @@ module.exports = {
     if (!recipe) 
       return res.render('user/nofound')
 
-    console.log(recipe.id)
     
+    result = await RecipeAndFiles.findRecipeId(recipe.id)
+    const filesId = result.rows
+
     return res.render('admin/recipes/show', { recipe })
   },
   async edit (req, res) {
@@ -54,8 +57,25 @@ module.exports = {
     if (req.body.chef == "" && req.body.title == "") {
       return res.send('Preencha todos os campos')
     }
-    Recipes.update(req.body)
-    return res.redirect(`/admin/recipes/${req.body.id}`)
+    
+    if(req.body.removed_files) {
+      const removedFiles = req.body.removed_files.split(',')
+      const lastIndex = removedFiles.length - 1
+      removedFiles.split(lastIndex, 1)
+
+      const removedFilesPromisse = removedFiles.map(id => {
+        return
+      })
+    }
+    
+    if(req.files.length == 0) return res.send('Enviar ao menos uma imagem!')
+
+
+
+    let result = await Recipes.update(req.body)
+    const recipeId = result.rows[0].id
+
+    return res.redirect(`/admin/recipes/${recipeId}`)
   },
   delete (req, res) {
     Recipes.delete(req.body.id, () => {
