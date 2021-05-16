@@ -37,6 +37,8 @@ module.exports = {
       
     if (!recipe) 
       return res.render('user/nofound')
+
+    console.log(recipe.id)
     
     return res.render('admin/recipes/show', { recipe })
   },

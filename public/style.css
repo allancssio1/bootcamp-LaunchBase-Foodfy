@@ -360,6 +360,24 @@ body .sobre{
   align-items: center;
   justify-content: center;
 }
+.card-recipes .container-images-thumbnails {
+  display: flex;
+  justify-content: flex-end;
+  width: 96%;
+}
+.card-recipes .container-images-thumbnails .images-thumbnails{
+  display: flex;
+  flex-direction: row-reverse;
+  width: 350px;
+  height: 60px;
+}
+.card-recipes .images-thumbnails img{
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  margin: 0 8px;
+  border-radius: 4px;
+}
 .title-show-recipes-admin{
   margin: 32px 0px;
 }
