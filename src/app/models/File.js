@@ -22,5 +22,22 @@ module.exports = {
     values = [recipe_id, fileId]
 
     return db.query(query, values)
-  } 
+  },
+  update({filename, path, recipe_id}) {
+    let query = `
+      UPDATE files SET name=($1), path=($2)
+      WHERE id=$3
+    `
+    let values = [filename, path]
+    
+    let result = await db.query(query, values)
+    const fileId = result.rows[0].id
+
+
+  },
+  delete(id) {
+    db.query(`DELETE FROM recipes_files WHERE recipe_id = $1`, [id])
+
+    return db.query(`DELETE FROM files WHERE id = $1`, [id])
+  }
 }
