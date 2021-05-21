@@ -1,7 +1,6 @@
 const Recipes = require('../models/Recipes')
 const File = require('../models/File')
 const Chefs = require('../models/Chefs')
-const Pivot = require('../models/RecipeAndFiles')
 const RecipeAndFiles = require('../models/RecipeAndFiles')
 
 module.exports = {
@@ -41,9 +40,16 @@ module.exports = {
 
     
     result = await RecipeAndFiles.findRecipeId(recipe.id)
-    const filesId = result.rows
 
-    return res.render('admin/recipes/show', { recipe })
+    const filesPromises = result.rows.map(file => {
+      return File.findFileForId(file.file_id)
+    } )
+    await Promise.all(filesPromises)
+
+    const files = await Promise.all(filesPromises)
+    const totalFiles = files.map(file => file.rows)
+    
+    return res.render('admin/recipes/show', { recipe, totalFiles })
   },
   async edit (req, res) {
     let result = await Recipes.find(req.params.id)
@@ -51,6 +57,7 @@ module.exports = {
     
     result = await Chefs.all()
     const optionsOfChefs = result.rows
+
     return res.render('admin/recipes/edit', { recipe, chefOptions: optionsOfChefs })
   },
   async put (req, res) {

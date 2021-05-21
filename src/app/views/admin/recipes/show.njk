@@ -14,9 +14,9 @@
     </div>
     <div class="container-images-thumbnails">
       <div class="images-thumbnails">
-        <img src="/chef.png" alt="...">
-        <img src="/burger.png" alt="...">
-        <img src="/pizza.png" alt="...">
+        {% for file in totalFiles %}
+          <img src="{{file.path}}" alt="{{file.name}}">
+        {% endfor %}
       </div>
     </div>
   </div>
