@@ -49,7 +49,7 @@ module.exports = {
     const filesPromise = await Promise.all(getFilesPromise)
     const files = filesPromise.map(file => ({
       ...file.rows,
-      src: `${req.protocol}://${req.headers.host}${file}`
+      src: `${req.protocol}://${req.headers.host}${file.rows.path.replace("public", "")}`
     }))
     console.log(files)
     
