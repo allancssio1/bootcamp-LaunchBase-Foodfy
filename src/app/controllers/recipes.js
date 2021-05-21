@@ -41,15 +41,19 @@ module.exports = {
     
     result = await RecipeAndFiles.findRecipeId(recipe.id)
 
-    const filesPromises = result.rows.map(file => {
+    const getFilesPromise = result.rows.map(file => {
       return File.findFileForId(file.file_id)
     } )
-    await Promise.all(filesPromises)
+    await Promise.all(getFilesPromise)
 
-    const files = await Promise.all(filesPromises)
-    const totalFiles = files.map(file => file.rows)
+    const filesPromise = await Promise.all(getFilesPromise)
+    const files = filesPromise.map(file => ({
+      ...file.rows,
+      src: `${req.protocol}://${req.headers.host}${file}`
+    }))
+    console.log(files)
     
-    return res.render('admin/recipes/show', { recipe, totalFiles })
+    return res.render('admin/recipes/show', { recipe, files })
   },
   async edit (req, res) {
     let result = await Recipes.find(req.params.id)
