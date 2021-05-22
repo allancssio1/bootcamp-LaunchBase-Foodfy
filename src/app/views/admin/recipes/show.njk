@@ -10,12 +10,12 @@
 
   <div class="images-container">
     <div id="image-recipe">
-      <img src="{{files[0].path}}" alt="{{recipe.title}}">
+      <img src="{{files[0].src}}" alt="{{recipe.title}}">
     </div>
-    <div class="container-images-thumbnails">
-      <div class="images-thumbnails">
-        {% for file in totalFiles %}
-          <img src="{{file.path}}" alt="{{file.name}}">
+    <div class="container-images-gallery">
+      <div class="images-gallery">
+        {% for file in files %}
+          <img src="{{file.src}}" alt="{{file.name}}">
         {% endfor %}
       </div>
     </div>

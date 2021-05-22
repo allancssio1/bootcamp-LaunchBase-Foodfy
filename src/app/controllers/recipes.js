@@ -49,9 +49,8 @@ module.exports = {
     const filesPromise = await Promise.all(getFilesPromise)
     const files = filesPromise.map(file => ({
       ...file.rows,
-      src: `${req.protocol}://${req.headers.host}${file.rows.path.replace("public", "")}`
+      src: `${req.protocol}://${req.headers.host}${file.rows['0'].path.replace("public", "")}`
     }))
-    console.log(files)
     
     return res.render('admin/recipes/show', { recipe, files })
   },
