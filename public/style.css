@@ -378,7 +378,12 @@ body .sobre{
   object-fit: cover;
   margin: 0 8px;
   opacity: 0.6;
-  cursor: pointer;border-radius: 4px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+.card-recipes .images-gallery img:hover,
+.card-recipes .images-gallery img.active{
+  opacity: 1;
 }
 .title-show-recipes-admin{
   margin: 32px 0px;

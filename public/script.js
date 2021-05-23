@@ -186,3 +186,18 @@ const PhotosUpload = {
     PhotosUpload.input.files = PhotosUpload.getAllFiles()
   }
 }
+
+const ImageGallery = {
+  previews: document.querySelectorAll('.images-gallery img'),
+  imagePrimery: document.querySelector('.images-container #image-recipe > img'),
+  setImage(e) {
+    const {target} = e
+    
+    ImageGallery.previews.forEach(preview => preview.classList.remove('active'))
+
+    target.classList.add('active')
+
+    ImageGallery.imagePrimery.src = target.src
+  }
+
+}

@@ -51,17 +51,29 @@ module.exports = {
       ...file.rows,
       src: `${req.protocol}://${req.headers.host}${file.rows['0'].path.replace("public", "")}`
     }))
-    
+
     return res.render('admin/recipes/show', { recipe, files })
   },
   async edit (req, res) {
-    let result = await Recipes.find(req.params.id)
-    const recipe = result.rows[0]
+    let results = await Recipes.find(req.params.id)
+    const recipe = results.rows[0]
     
-    result = await Chefs.all()
-    const optionsOfChefs = result.rows
+    results = await Chefs.all()
+    const chefOptions = results.rows
 
-    return res.render('admin/recipes/edit', { recipe, chefOptions: optionsOfChefs })
+    results = await RecipeAndFiles.findRecipeId(recipe.id)
+    const filesId = results.rows.map(file => {
+      return File.findFileForId(file.file_id)
+    })
+    await Promise.all(filesId)
+    
+    const filesPromise = await Promise.all(filesId)
+    const files = filesPromise.map(file => ({
+      ...file.rows,
+      src: `${req.protocol}://${req.headers.host}${file.rows['0'].path.replace("public", "")}`
+    }))
+
+    return res.render('admin/recipes/edit', { recipe, chefOptions, files })
   },
   async put (req, res) {
     if (req.body.chef == "" && req.body.title == "") {
@@ -72,21 +84,21 @@ module.exports = {
       const removedFiles = req.body.removed_files.split(',')
       const lastIndex = removedFiles.length - 1
       removedFiles.split(lastIndex, 1)
-
-      const removedFilesPromisse = removedFiles.map(id => File.delete(id))
-      await Promise.all(removedFilesPromisse)
+      console.log(removedFiles)
+      // const removedFilesPromisse = removedFiles.map(id => File.delete(id))
+      // await Promise.all(removedFilesPromisse)
     }
     
     if(req.files.length == 0) return res.send('Enviar ao menos uma imagem!')
 
     let result = await Recipes.update(req.body)
-    const recipeId = result.rows[0].id
+    const recipeId = result.rows[0]
 
-    let filesPromise = req.files.map(file => File.update({
-      ...file,
-      recipe_id: recipeId
-    }))
-    await Promise.all(filesPromise)
+    // let filesPromise = req.files.map(file => File.update({
+    //   ...file,
+    //   recipe_id: recipeId
+    // }))
+    // await Promise.all(filesPromise)
 
     return res.redirect(`/admin/recipes/${recipeId}`)
   },
