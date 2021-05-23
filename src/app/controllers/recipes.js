@@ -80,13 +80,13 @@ module.exports = {
       return res.send('Preencha todos os campos')
     }
     
+
     if(req.body.removed_files) {
       const removedFiles = req.body.removed_files.split(',')
       const lastIndex = removedFiles.length - 1
       removedFiles.split(lastIndex, 1)
-      console.log(removedFiles)
-      // const removedFilesPromisse = removedFiles.map(id => File.delete(id))
-      // await Promise.all(removedFilesPromisse)
+      const removedFilesPromisse = removedFiles.map(id => File.delete(id))
+      await Promise.all(removedFilesPromisse)
     }
     
     if(req.files.length == 0) return res.send('Enviar ao menos uma imagem!')
