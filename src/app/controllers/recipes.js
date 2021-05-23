@@ -84,12 +84,12 @@ module.exports = {
     if(req.body.removed_files) {
       const removedFiles = req.body.removed_files.split(',')
       const lastIndex = removedFiles.length - 1
-      removedFiles.split(lastIndex, 1)
+      removedFiles.splice(lastIndex, 1)
       const removedFilesPromisse = removedFiles.map(id => File.delete(id))
       await Promise.all(removedFilesPromisse)
     }
     
-    if(req.files.length == 0) return res.send('Enviar ao menos uma imagem!')
+    // if(req.files.length == 0) return res.send('Enviar ao menos uma imagem!')
 
     let result = await Recipes.update(req.body)
     const recipeId = result.rows[0]
