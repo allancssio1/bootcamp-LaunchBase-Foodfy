@@ -13,7 +13,11 @@
       
       <div class="buttons-delete-salve">
         
-        <form id="form-delete" method="post" action="/admin/recipes?_method=DELETE" >
+        <form
+          id="form-delete"
+          method="post"
+          action="/admin/recipes?_method=DELETE"
+          enctype="multipart/form-data">
           <button type="submit" id="button-delete">Deletar</button>
           <input type="hidden" name="id" value="{{recipe.id}}">
         </form>
@@ -24,7 +28,12 @@
       
     </header>
 
-    <form id="post" method="POST" action="/admin/recipes?_method=PUT">
+    <form
+      id="post"
+      method="POST"
+      action="/admin/recipes?_method=PUT"
+      enctype="multipart/form-data"
+    >
       {% include "admin/recipes/fields.njk" %}
       <input type="hidden" name="id" value="{{recipe.id}}">
     </form>

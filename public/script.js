@@ -69,7 +69,6 @@ if(formDelete){
     }
   })
 }
-
 const PhotosUpload = {
   input: '',
   uploadLimit: 5,
@@ -131,6 +130,8 @@ const PhotosUpload = {
   },
   getAllFiles() {
     const dataTrasnfer = new ClipboardEvent("").clipboardData || new DataTransfer
+
+    console.log(dataTrasnfer)
 
     PhotosUpload.files.forEach(file => dataTrasnfer.items.add(file))
 
