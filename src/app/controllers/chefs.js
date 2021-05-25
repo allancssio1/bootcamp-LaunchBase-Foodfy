@@ -19,7 +19,7 @@ module.exports = {
     }
 
     let result = await Chefs.create (req.body)
-    const chef = result.rows[0].id
+    const chef = result.rows[0]
 
     return res.redirect(`/admin/chefs/${chef}`)
   },
