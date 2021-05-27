@@ -2,14 +2,9 @@ const db = require('../../config/db')
 const {date} = require('../lib/utils')
 
 module.exports = {
-  all (callback) {
-    db.query(`SELECT recipes.*, chefs.name AS chef_name FROM recipes
-      LEFT JOIN chefs ON (chefs.id = recipes.chef_id)`,
-      (err, results) =>  {
-        if (err) throw `Database error ${err}`
-        callback(results.rows)
-      }
-    )
+  all () {
+    return db.query(`SELECT recipes.*, chefs.name AS chef_name FROM recipes
+      LEFT JOIN chefs ON (chefs.id = recipes.chef_id)`)
   },
   findBy(filter, callback) {
     db.query(`SELECT recipes.*, chefs.name AS chef_name FROM recipes
@@ -55,29 +50,34 @@ module.exports = {
     return db.query(`SELECT name, id FROM chefs`)
   },
   update (data) {
-    const query = `
-    UPDATE recipes SET 
-      title=($1),
-      ingredients=($2),
-      preparation=($3),
-      information=($4),
-      chef_id=($5)
-    WHERE id=$6
-    `
+    try {
+      const query = `
+      UPDATE recipes SET 
+        title=($1),
+        ingredients=($2),
+        preparation=($3),
+        information=($4),
+        chef_id=($5)
+      WHERE id=$6
+      `
+  
+      const values = [
+        data.title,
+        data.ingredients,
+        data.preparation,
+        data.information,
+        data.chef,
+        data.id
+      ]
+  
+      return db.query (query, values)
 
-    const values = [
-      data.title,
-      data.ingredients,
-      data.preparation,
-      data.information,
-      data.chef,
-      data.id
-    ]
+    } catch (err) {
+      console.error(err)     
+    }
 
-    return db.query (query, values)
   },
   delete (id) {
-    // let query = ``
     
     let query = `DELETE FROM recipes WHERE id=$1`
     let value = [id]

@@ -5,9 +5,25 @@ const RecipeAndFiles = require('../models/RecipeAndFiles')
 
 module.exports = {
   async index (req, res) {
-    await Recipes.all(recipes => {
-      return res.render('admin/recipes/index', { recipes })
-    }) 
+    let results = await Recipes.all()
+    const recipes = results.rows
+    await Promise.all(recipes)
+
+    // const idRecipes = recipes.map(recipe => recipe.id)
+
+    // results = idRecipes.map(id => RecipeAndFiles.findRecipeId(id))
+    // const filesPromise = await Promise.all(results)
+
+    // // TRAS SOMENTE UM ARRAY COM OUTROS ARRAYS ONDE ESSE ULTIMO POSSUE OS 
+    // const arrayOfIdOfFiles = filesPromise.map(file => {
+    //   return file.rows.map(idFile => idFile.file_id)
+    // })
+    // const file = arrayOfIdOfFiles.map(array => {
+    //   return array.map(id => File.findFileForId(id))
+    // })
+    // await Promise.all(file)
+    // console.log(arrayOfIdOfFiles)
+    return res.render('admin/recipes/index', { recipes })
     
   },
   async create (req, res) {
@@ -16,8 +32,9 @@ module.exports = {
     return res.render('admin/recipes/create', { chefOptions })
   },
   async post (req, res) {
-    if (req.body.chef == ""|| req.body.title == "") {
-      return res.send('Preencha todos os campos')
+    console.log(req.body)
+    if (req.body.title == "") {
+      return res.send('Você precisa dar um nome para receita!')
     }
 
     if(req.files.length == 0)
@@ -76,8 +93,11 @@ module.exports = {
     return res.render('admin/recipes/edit', { recipe, chefOptions, files })
   },
   async put (req, res) {
-    if (req.body.chef == "" && req.body.title == "") {
-      return res.send('Preencha todos os campos')
+    const keys = Object.keys(req.body)
+    for(key of keys) {
+      if (req.body.title == "" && key != "removed_files") {
+        return res.send('Você precisa dar um nome e enviar ao menos uma imagem.')
+      }
     }
 
     if(req.body.removed_files) {
@@ -89,19 +109,21 @@ module.exports = {
       await Promise.all(removedFilesPromisse)
     }
 
-    console.log(req.files)
-    if(req.files.length == 0) return res.send('Enviar ao menos uma imagem!')
+    if(req.files.length != 0) {
+      const oldFiles = await RecipeAndFiles.findRecipeId(req.body.id)
+      const totalFiles = oldFiles.rows.length + req.files.length
 
-    let result = await Recipes.update(req.body)
-    const recipeId = result.rows[0]
+      if (totalFiles <= 5) {
+        const newFilesPromese = req.files.map(file => {
+          File.create({...file, recipe_id: req.body.id})
+        })
+        await Promise.all(newFilesPromese)
+      }
+    }
 
-    // let filesPromise = req.files.map(file => File.update({
-    //   ...file,
-    //   recipe_id: recipeId
-    // }))
-    // await Promise.all(filesPromise)
+    await Recipes.update(req.body)
 
-    return res.redirect(`/admin/recipes/${recipeId}`)
+    return res.redirect(`/admin/recipes/${req.body.id}`)
   },
   delete (req, res) {
     Recipes.delete(req.body.id, () => {
