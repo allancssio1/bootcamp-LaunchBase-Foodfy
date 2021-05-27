@@ -38,6 +38,16 @@
 <div class="form-items">
   <div>Chef</div>
   <select name="chef">
+    <option disabled
+      {% for chef in chefOptions %}
+        selected
+        {% if chef.id == recipe.chef_id %}
+         value="{{chef.id}}"
+        {% endif %}
+      {% endfor %}
+    >
+      Escolha um chefe.
+    </option>
     {% for chef in chefOptions %}
     <option value="{{chef.id}}"
       {% if chef.id == recipe.chef_id %}
