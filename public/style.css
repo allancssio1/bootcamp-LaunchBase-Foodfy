@@ -347,7 +347,8 @@ body .sobre{
 .card-recipes .form-recipes button[type='submit'],
 .title-show-recipes-admin .edit-recipe,
 .card-chefs .header-show-chef a,
-.button_filter, .button_create{
+.button_filter, .button_create,
+.form-item-image .avatar-upload label{
   background-color: var(--color-links-primary);
   border: none;
   border-radius: 4px;
@@ -520,7 +521,8 @@ button{
   font-size: 50px;
   color: #999999;
 }
-.form-items .form-item-image .photos-upload input[type="file"]{
+.form-items .form-item-image .photos-upload input[type="file"],
+#avatar-input{
   display: none;
 }
 .form-items .form-item-image #photos-preview{
