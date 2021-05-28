@@ -4,10 +4,28 @@
   <div>Nome</div>
   <input type="text" class="input" name="name" values="{{chef.name}}" placeholder="{{chef.name}}">
 </div>
+
 <div class="form-items">
   <div>Avatar</div>
-  <input type="url" class="input" name="avatar_url" values="{{chef.avatar_url}}" placeholder="{{chef.avatar_url}}">
+  <div class="form-item-image">
+    <div class="avatar-upload">
+    <label for="avatar-input">
+      <i class="material-icons">add</i>
+    </label>
+      <input
+        id="avatar-input"
+        type="file"
+        name="avatar"
+        multiple accept="image/*"
+        onchange="PhotosUpload.handleAvatarInput(event)">
+    </div>
+  </div>
 </div>
+
+{# <div class="form-items">
+  <div>Avatar</div>
+  <input type="url" class="input" name="avatar_url" values="{{chef.avatar_url}}" placeholder="{{chef.avatar_url}}">
+</div> #}
 <div style="visibility: hidden;" id="countRecipes">{{chef.total_recipes}}</div>
 
 {% endblock content %}

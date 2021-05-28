@@ -1,4 +1,5 @@
 const Chefs = require('../models/Chefs')
+const File = require('../models/File')
 
 module.exports = {
   async index (req, res) {
@@ -18,7 +19,9 @@ module.exports = {
       }
     }
 
-    let result = await Chefs.create (req.body)
+    let result = await File.create(req.file)
+
+    result = await Chefs.create (req.body)
     const chef = result.rows[0]
 
     return res.redirect(`/admin/chefs/${chef}`)

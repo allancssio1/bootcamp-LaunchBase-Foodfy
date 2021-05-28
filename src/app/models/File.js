@@ -13,16 +13,20 @@ module.exports = {
 
     const result = await db.query(query, values)
     const fileId = result.rows[0].id
+    if(recipe_id) {
+      query = `
+        INSERT INTO recipes_files (recipe_id, file_id)
+        VALUES ($1, $2)
+        RETURNING id`
 
-    query = `
-      INSERT INTO recipes_files (recipe_id, file_id)
-      VALUES ($1, $2)
-      RETURNING id
-    `
+      values = [recipe_id, fileId]
 
-    values = [recipe_id, fileId]
+      return db.query(query, values)
+    }
+    if(chef_id) {
 
-    return db.query(query, values)
+      return db.query(query, values)
+    }
   },
   findFileForId(id) {
     try {
