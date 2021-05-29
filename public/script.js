@@ -69,11 +69,29 @@ if(formDelete){
     }
   })
 }
+
+let chefId= window.location.pathname.split("/")[3]
 const PhotosUpload = {
   input: '',
-  uploadLimit: 5,
+  imageRecipeLimit: 5, 
+  imageChefLimit: 1,
   preview: document.querySelector('#photos-preview'),
   files: [],
+  createLocation: "/admin/chefs/create",
+  editLocation: `/admin/chefs/${chefId}/edit` ,
+  handleAvatarInput(event) {
+    const {files: fileList} = event.target
+    PhotosUpload.input = event.target
+    
+    if(this.createLocation || this.editLocation) {
+
+
+      
+      
+    }
+
+
+  },
   handleImageInput(event) {
     const {files: fileList} = event.target
     PhotosUpload.input = event.target
@@ -102,11 +120,37 @@ const PhotosUpload = {
     
   },
   hasLimit(event){
-    const {uploadLimit, input, preview} = PhotosUpload
+    const {imageRecipeLimit, input, preview, imageChefLimit} = PhotosUpload
     const {files: fileList} = input
+
+    if(this.editLocation || this.createLocation) {
+      if(fileList.length > imageChefLimit) {
+        alert(`Envie no máximo ${imageChefLimit} fotos.`)
+        event.preventDefault()
+        
+        return true
+      }
+      let photosDiv = []
+      preview.childNodes.forEach(item => {
+  
+        if(item.classList && item.classList.value == "photo")
+          photosDiv.push(item)
+      })
+  
+      const totalPhotos = fileList.length + photosDiv.length
+      if(totalPhotos > imageChefLimit) {
+        alert(`Você atingiu o limite máximo de fotos.`)
+        event.preventDefault()
+  
+        return true
+      }
+  
+      return false
+
+    }
     
-    if(fileList.length > uploadLimit) {
-      alert(`Envie no máximo ${uploadLimit} fotos.`)
+    if(fileList.length > imageRecipeLimit) {
+      alert(`Envie no máximo ${imageRecipeLimit} fotos.`)
       event.preventDefault()
       
       return true
@@ -119,7 +163,7 @@ const PhotosUpload = {
     })
 
     const totalPhotos = fileList.length + photosDiv.length
-    if(totalPhotos > uploadLimit) {
+    if(totalPhotos > imageRecipeLimit) {
       alert(`Você atingiu o limite máximo de fotos.`)
       event.preventDefault()
 
@@ -130,8 +174,6 @@ const PhotosUpload = {
   },
   getAllFiles() {
     const dataTrasnfer = new ClipboardEvent("").clipboardData || new DataTransfer
-
-    console.log(dataTrasnfer)
 
     PhotosUpload.files.forEach(file => dataTrasnfer.items.add(file))
 
