@@ -70,7 +70,8 @@ if(formDelete){
   })
 }
 
-let chefId= window.location.pathname.split("/")[3]
+let chefId= window.location.pathname.split("/")[3],
+  windowLocation= window.location.pathname
 const PhotosUpload = {
   input: '',
   imageRecipeLimit: 5, 
@@ -79,19 +80,6 @@ const PhotosUpload = {
   files: [],
   createLocation: "/admin/chefs/create",
   editLocation: `/admin/chefs/${chefId}/edit` ,
-  handleAvatarInput(event) {
-    const {files: fileList} = event.target
-    PhotosUpload.input = event.target
-    
-    if(this.createLocation || this.editLocation) {
-
-
-      
-      
-    }
-
-
-  },
   handleImageInput(event) {
     const {files: fileList} = event.target
     PhotosUpload.input = event.target
@@ -102,80 +90,79 @@ const PhotosUpload = {
       return
     }
 
-    Array.from(fileList).forEach(file => {
-      PhotosUpload.files.push(file)
-      const reader = new  FileReader()
+    if(this.editLocation !== windowLocation || windowLocation !== this.createLocation) {
+      Array.from(fileList).forEach(file => {
+        PhotosUpload.files.push(file)
+        const reader = new  FileReader()
 
-      reader.onload = () => {
-        const image = new Image()
-        image.src = String(reader.result)
+        reader.onload = () => {
+          const image = new Image()
+          image.src = String(reader.result)
 
-        const div = PhotosUpload.getContainer(image)
-        PhotosUpload.preview.appendChild(div)
-      }
+          const div = PhotosUpload.getContainer(image)
+          PhotosUpload.preview.appendChild(div)
+        }
 
-      reader.readAsDataURL(file)
-    }) 
+        reader.readAsDataURL(file)
+      }) 
+      PhotosUpload.updateUploadFiles()
+      
+    }
+    console.log("não entrou no Array")
+
     PhotosUpload.updateUploadFiles()
     
   },
   hasLimit(event){
     const {imageRecipeLimit, input, preview, imageChefLimit} = PhotosUpload
     const {files: fileList} = input
+    console.log(fileList)
 
-    if(this.editLocation || this.createLocation) {
+    if(this.editLocation == windowLocation || windowLocation == this.createLocation) {
       if(fileList.length > imageChefLimit) {
         alert(`Envie no máximo ${imageChefLimit} fotos.`)
+        event.preventDefault()
+        return true
+      }
+
+      return false
+
+    }
+
+    if(this.editLocation != windowLocation || windowLocation != this.createLocation) {
+
+      if(fileList.length > imageRecipeLimit) {
+        alert(`Envie no máximo ${imageRecipeLimit} fotos.`)
         event.preventDefault()
         
         return true
       }
       let photosDiv = []
       preview.childNodes.forEach(item => {
-  
+
         if(item.classList && item.classList.value == "photo")
           photosDiv.push(item)
       })
-  
+
       const totalPhotos = fileList.length + photosDiv.length
-      if(totalPhotos > imageChefLimit) {
+      if(totalPhotos > imageRecipeLimit) {
         alert(`Você atingiu o limite máximo de fotos.`)
         event.preventDefault()
-  
+
         return true
       }
-  
+
       return false
-
-    }
-    
-    if(fileList.length > imageRecipeLimit) {
-      alert(`Envie no máximo ${imageRecipeLimit} fotos.`)
-      event.preventDefault()
-      
-      return true
-    }
-    let photosDiv = []
-    preview.childNodes.forEach(item => {
-
-      if(item.classList && item.classList.value == "photo")
-        photosDiv.push(item)
-    })
-
-    const totalPhotos = fileList.length + photosDiv.length
-    if(totalPhotos > imageRecipeLimit) {
-      alert(`Você atingiu o limite máximo de fotos.`)
-      event.preventDefault()
-
-      return true
     }
 
-    return false
   },
   getAllFiles() {
     const dataTrasnfer = new ClipboardEvent("").clipboardData || new DataTransfer
 
-    PhotosUpload.files.forEach(file => dataTrasnfer.items.add(file))
+    PhotosUpload.files.forEach(file => {
+      console.log(dataTrasnfer.items.add(file))
+      return dataTrasnfer.items.add(file)
+    })
 
     return dataTrasnfer.files
   },
