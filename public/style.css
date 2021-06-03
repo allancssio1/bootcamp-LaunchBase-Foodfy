@@ -361,6 +361,9 @@ body .sobre{
   align-items: center;
   justify-content: center;
 }
+.form-item-image .avatar-upload label{
+  cursor: pointer;
+}
 .card-recipes .container-images-gallery {
   display: flex;
   justify-content: flex-end;

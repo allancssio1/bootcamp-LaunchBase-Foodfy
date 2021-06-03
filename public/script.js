@@ -86,49 +86,44 @@ const PhotosUpload = {
 
     if(PhotosUpload.hasLimit(event)){
       PhotosUpload.updateUploadFiles()
-      
+
       return
     }
+    Array.from(fileList).forEach(file => {
+      PhotosUpload.files.push(file)
+      const reader = new  FileReader()
+      
+      reader.onload = () => {
+        const image = new Image()
+        image.src = String(reader.result)
+        
+        const div = PhotosUpload.getContainer(image)
 
-    if(this.editLocation !== windowLocation || windowLocation !== this.createLocation) {
-      Array.from(fileList).forEach(file => {
-        PhotosUpload.files.push(file)
-        const reader = new  FileReader()
-
-        reader.onload = () => {
-          const image = new Image()
-          image.src = String(reader.result)
-
-          const div = PhotosUpload.getContainer(image)
+        if(this.editLocation != windowLocation && windowLocation != this.createLocation) {
           PhotosUpload.preview.appendChild(div)
         }
-
+        console.log(div) 
+      }
         reader.readAsDataURL(file)
-      }) 
-      PhotosUpload.updateUploadFiles()
+    }) 
       
-    }
-    console.log("não entrou no Array")
-
     PhotosUpload.updateUploadFiles()
-    
   },
   hasLimit(event){
     const {imageRecipeLimit, input, preview, imageChefLimit} = PhotosUpload
     const {files: fileList} = input
-    console.log(fileList)
-
+    
     if(this.editLocation == windowLocation || windowLocation == this.createLocation) {
       if(fileList.length > imageChefLimit) {
         alert(`Envie no máximo ${imageChefLimit} fotos.`)
         event.preventDefault()
         return true
       }
-
+      
       return false
-
+      
     }
-
+    
     if(this.editLocation != windowLocation || windowLocation != this.createLocation) {
 
       if(fileList.length > imageRecipeLimit) {
@@ -160,7 +155,6 @@ const PhotosUpload = {
     const dataTrasnfer = new ClipboardEvent("").clipboardData || new DataTransfer
 
     PhotosUpload.files.forEach(file => {
-      console.log(dataTrasnfer.items.add(file))
       return dataTrasnfer.items.add(file)
     })
 
@@ -170,10 +164,12 @@ const PhotosUpload = {
     const div = document.createElement("div")
 
     div.classList.add("photo")
-    div.onclick = PhotosUpload.removePhoto
-    div.appendChild(image)
-    div.appendChild(PhotosUpload.getRemoveButton())
+    if(this.editLocation != windowLocation && windowLocation != this.createLocation) {
 
+      div.onclick = PhotosUpload.removePhoto
+      div.appendChild(PhotosUpload.getRemoveButton())
+    }
+    div.appendChild(image)
     return div
   },
   getRemoveButton() {
