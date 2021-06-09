@@ -18,18 +18,18 @@ module.exports = {
         return res.send("Preencha todos os dados")
       }
     }
+
     if(req.files == "") {
       return res.send("Enviar ao menos uma imagem!")
     }
-    console.log(req.body)
-    console.log(req.files)
-    // let result = await File.create(req.file)
 
-    // result = await Chefs.create (req.body)
-    // const chef = result.rows[0]
+    let result = await Promise.all(req.files.map(file => File.create(file)))
+    const idFile = result[0]
+    
+    result = await Chefs.create({...req.body, file_id: idFile })
+    const chef = result.rows[0].id
 
-    // return res.redirect(`/admin/chefs/${chef}`)
-    return res.send("concluiu")
+    return res.redirect(`/admin/chefs/${chef}`)
   },
   show (req, res) {
     Chefs.find(req.params.id, chef => {

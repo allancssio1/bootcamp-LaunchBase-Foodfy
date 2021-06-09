@@ -29,15 +29,12 @@ module.exports = {
       }
     )
   },
-  create (data) {
-    const query = `INSERT INTO chefs (name, avatar_url, created_at) VALUES ($1, $2, $3) RETURNING id`
-    const values = [data.name, data.avatar_url, date(Date.now()).iso]
-    db.query (query, values,
-      (err, results) =>  {
-        if (err) throw `Database Error ${err}`
-        callback(results.rows[0].id)
-      }
-    )
+  create ({name, file_id}) {
+    const query = `INSERT INTO chefs (name, file_id, created_at) VALUES ($1, $2, $3) RETURNING id`
+
+    const values = [name, file_id, date(Date.now()).iso]
+    
+    return db.query(query, values)
   },
   update (data, callback) {
     const query = `UPDATE chefs SET name=($1), avatar_url=($2) WHERE id=$3`

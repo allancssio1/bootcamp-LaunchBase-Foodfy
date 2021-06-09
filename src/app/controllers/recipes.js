@@ -32,7 +32,6 @@ module.exports = {
     return res.render('admin/recipes/create', { chefOptions })
   },
   async post (req, res) {
-    console.log(req.body)
     if (req.body.title == "") {
       return res.send('Você precisa dar um nome para receita!')
     }

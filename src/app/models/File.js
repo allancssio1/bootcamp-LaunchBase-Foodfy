@@ -2,7 +2,7 @@ const db = require('../../config/db')
 const fs = require('fs')
 
 module.exports = {
-  async create({filename, path, recipe_id}) {
+  async create({filename, path, recipe_id, fieldname}) {
     let query = `
       INSERT INTO files (name, path)
       VALUES ($1, $2)
@@ -23,10 +23,11 @@ module.exports = {
 
       return db.query(query, values)
     }
-    if(chef_id) {
 
-      return db.query(query, values)
+    if(fieldname == 'avatar') {
+      return fileId
     }
+
   },
   findFileForId(id) {
     try {
