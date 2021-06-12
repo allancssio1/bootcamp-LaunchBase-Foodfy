@@ -24,6 +24,14 @@ module.exports = {
     `, [id]
     )
   },
+  findRecipeForChef(id) { //NÃO ESTÁ DEVOLVENDO TODAS AS RECEITAS QUE O CHEFE TEM
+    try {
+      return db.query(`SELECT * FROM recipes WHERE recipes.chef_id = $1`, [id])
+
+    } catch (error) {
+      console.log(error)
+    }
+  },
   create(data) {
     const query = `
       INSERT INTO recipes (

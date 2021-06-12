@@ -60,7 +60,6 @@ module.exports = {
     const getFilesPromise = result.rows.map(file => {
       return File.findFileForId(file.file_id)
     } )
-    await Promise.all(getFilesPromise)
 
     const filesPromise = await Promise.all(getFilesPromise)
     const files = filesPromise.map(file => ({
