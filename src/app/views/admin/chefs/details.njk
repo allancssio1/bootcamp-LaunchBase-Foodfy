@@ -9,12 +9,15 @@
 
   <section class="chef">
     <div class="image-chef-details">
+      {% if not fileChef.src %}
+        <img src="" alt="">
+      {% endif %}
       <img
-        src="{{chef.avatar_url}}"
+        src="{{fileChef.src}}"
         alt="{{chef.name}}">
     </div>
       <h1 >{{chef.name}}</h1>
-      <p><span id="count_recipes">{{chef.total_recipes}}</span> receitas</p>
+      <p><span id="count_recipes">{{recipes.length}}</span> receitas</p>
   </section>
   
   <h2 id="h2-recipe">Receitas</h2>
@@ -23,7 +26,7 @@
     {% for recipe in recipes %}
     <div class="recipe-item">
       <div class="image-recipe">
-        <img src="{{recipe.image}}" alt="{{recipe.name}}">
+        <img src="{{file.src}}" alt="{{recipe.name}}">
       </div>
       <div class="details-recipe">
         <h3 id="title-recipe">{{recipe.title}}</h3>
