@@ -2,7 +2,7 @@
 
 <div class="form-items">
   <div>Nome</div>
-  <input type="text" class="input" name="name" values="{{chef.name}}" placeholder="{{chef.name}}">
+  <input type="text" class="input" id="chef" name="name" values="{{chef.name}}" placeholder="{{chef.name}}"/>
 </div>
 
 <div class="form-items">
@@ -21,7 +21,5 @@
     </div>
   </div>
 </div>
-
-<div style="visibility: hidden;" id="countRecipes">{{chef.total_recipes}}</div>
 
 {% endblock content %}

@@ -72,6 +72,7 @@ if(formDelete){
 
 let chefId= window.location.pathname.split("/")[3],
   windowLocation= window.location.pathname
+  
 const PhotosUpload = {
   input: '',
   imageRecipeLimit: 5, 
