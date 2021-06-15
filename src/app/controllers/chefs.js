@@ -74,13 +74,13 @@ module.exports = {
   },
   put (req, res) {
     console.log(req.body)
-    console.log(req.files)
+    console.log(req.file)
 
     if (req.body.name == ""){
       res.send('Preencha todos os dados')
     }
       
-    if(req.files == "") {
+    if(req.file == "") {
       return res.send("envie uma imagem como avatar!")
     }
     
