@@ -24,7 +24,12 @@
       
     </header>
 
-    <form id="post" method="POST" action="/admin/chefs?_method=PUT">
+    <form
+      id="post"
+      method="POST"
+      action="/admin/chefs?_method=PUT"
+      enctype="multipart/form-data"
+    >
       {% include "admin/chefs/fields.njk" %}
       <input type="hidden" name="id" value="{{chef.id}}">
     </form>

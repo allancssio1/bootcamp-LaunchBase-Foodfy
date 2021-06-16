@@ -16,23 +16,21 @@ module.exports = {
     const keys = Object.keys(req.body)
 
     for (key of keys) {
-      if (req.body[key] == "") {
+      if (req.body.name == "") {
         return res.send("Preencha todos os dados")
       }
     }
 
-    if(req.files == "") {
+    if(!req.file) {
       return res.send("Enviar ao menos uma imagem!")
     }
 
-    let result = await Promise.all(req.files.map(file => File.create(file)))
+    let result = await File.create(req.file)
     const idFile = result[0]
     
     result = await Chefs.create({...req.body, file_id: idFile })
     const chef = result.rows[0].id
-    console.log(chef)
     
-
     return res.redirect(`/admin/chefs/${chef}`)
   },
   async show (req, res) {
@@ -70,20 +68,32 @@ module.exports = {
     let result = await Chefs.find(req.params.id)
     const chef = result.rows[0]
 
-    return res.render("admin/chefs/edit", {chef})
-  },
-  put (req, res) {
-    console.log(req.body)
-    console.log(req.file)
+    result = await File.findFileForId(chef.file_id)
+    const fileChef = result.rows[0]
 
+    return res.render("admin/chefs/edit", {chef, fileChef})
+  },
+  async put (req, res) {
     if (req.body.name == ""){
       res.send('Preencha todos os dados')
     }
-      
-    if(req.file == "") {
+    if(!req.file) {
       return res.send("envie uma imagem como avatar!")
     }
     
+    let result = await Chefs.find(req.body.id)
+    const fileIdOld = result.rows[0].file_id
+
+    if(fileIdOld) {
+      await File.delete(fileIdOld)
+
+      result = await File.create(req.file)
+      const fileId = result[0]
+      console.log(fileId)
+    }else {
+      
+    }
+
 
     return res.redirect(`/admin/chefs/${req.body.id}`)
   },
