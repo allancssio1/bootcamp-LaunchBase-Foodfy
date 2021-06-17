@@ -5,9 +5,25 @@ const Recipes = require('../models/Recipes')
 
 module.exports = {
   async index (req, res) {
+    let files = []
     let result = await Chefs.all()
     const chefs = result.rows
-    return res.render("admin/chefs/index", {chefs})
+
+    result = await chefs.map(chef => File.findFileForId(chef.file_id))
+    
+    let file = await Promise.all(result)
+    file.map(newFile => newFile.rows.map(rows => files.push(rows)))
+    files.map(file => file.src = `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`)
+    
+    for (chef in chefs) {
+      chefs[chef] = {
+        ...chefs[chef],
+        path: files[chef].path,
+        src: files[chef].src
+      }
+    }
+
+    return res.render("admin/chefs/index", {chefs, files})
   },
   create (req, res) {
     return res.render("admin/chefs/create")
@@ -26,7 +42,7 @@ module.exports = {
     }
 
     let result = await File.create(req.file)
-    const idFile = result[0]
+    const idFile = result
     
     result = await Chefs.create({...req.body, file_id: idFile })
     const chef = result.rows[0].id
@@ -77,23 +93,20 @@ module.exports = {
     if (req.body.name == ""){
       res.send('Preencha todos os dados')
     }
+
     if(!req.file) {
       return res.send("envie uma imagem como avatar!")
     }
-    
+
     let result = await Chefs.find(req.body.id)
     const fileIdOld = result.rows[0].file_id
 
-    if(fileIdOld) {
-      await File.delete(fileIdOld)
+    await File.delete(fileIdOld)
 
-      result = await File.create(req.file)
-      const fileId = result[0]
-      console.log(fileId)
-    }else {
-      
-    }
+    result = await File.create(req.file)
+    const fileId = result
 
+    result = await Chefs.update({... req.body, file_id: fileId})
 
     return res.redirect(`/admin/chefs/${req.body.id}`)
   },

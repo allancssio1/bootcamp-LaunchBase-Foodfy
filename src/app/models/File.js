@@ -62,9 +62,11 @@ module.exports = {
   async delete(id) {
     try {
       let result = await db.query(`SELECT * FROM recipes_files WHERE file_id = $1`, [id])
-      const fileForRecipesAndFiles = result.rows[0].id
-
-      await db.query(`DELETE FROM recipes_files WHERE id = $1`, [fileForRecipesAndFiles])
+      if(result.rows[0]) {
+        const fileForRecipesAndFiles = result.rows[0].id
+        
+        await db.query(`DELETE FROM recipes_files WHERE id = $1`, [fileForRecipesAndFiles])
+      }
 
       result = await db.query(`SELECT * FROM files WHERE id = $1`, [id])
       const file = result.rows[0]

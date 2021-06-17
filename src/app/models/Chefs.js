@@ -3,11 +3,16 @@ const db = require('../../config/db')
 
 module.exports = {
   all() {
-    return db.query (`SELECT chefs.*,
-      count(recipes) AS total_recipes FROM chefs
-      LEFT JOIN recipes ON (recipes.chef_id = chefs.id)
-      GROUP BY chefs.id`
-    )
+    return db.query (`
+      SELECT * FROM chefs
+    `)
+
+
+    // `SELECT chefs.*,
+    //   count(recipes) AS total_recipes FROM chefs
+    //   LEFT JOIN recipes ON (recipes.chef_id = chefs.id),
+      
+    //   GROUP BY chefs.id`
   },
   find (id) {
     try {
@@ -16,16 +21,6 @@ module.exports = {
     } catch (error) {
       console.error(error)
     }
-
-    //
-    // return db.query (
-    //   `SELECT chefs.*,
-    //   count(recipes) AS total_recipes FROM chefs
-    //   LEFT JOIN recipes ON (recipes.chef_id = chefs.id)
-    //   WHERE chefs.id = $1
-    //   GROUP BY chefs.id
-    //   `, [id]
-    // )
   },
   findRecipe(chef_id, callback) {
     db.query (`SELECT recipes.* FROM recipes WHERE recipes.chef_id=$1`, [chef_id.id],
@@ -42,22 +37,26 @@ module.exports = {
     
     return db.query(query, values)
   },
-  update (data, callback) {
-    const query = `UPDATE chefs SET name=($1), avatar_url=($2) WHERE id=$3`
-    const values = [data.name, data.avatar_url, data.id]
-    db.query(query, values,
-      (err, results) =>  {
-        if (err) throw `Database error ${err}`
-        callback()
-      }
-    )
+  update ({id, name, file_id}) {
+    try {
+      const query = `
+        UPDATE chefs SET
+          name=($1),
+          file_id=($2)
+        WHERE id=$3
+      `
+      const values = [name, file_id, id]
+      
+      return db.query(query, values)
+    } catch (error) {
+      console.error(error)
+    }
   },
-  delete (id, callback) {
-    db.query(`DELETE FROM chefs WHERE id=$1`, [id],
-      (err, results) => {
-        if (err) throw `Database error ${err}`
-        callback()
-      }
-    )
+  delete (id){
+    try {
+      return db.query(``)
+    } catch (error) {
+      
+    }
   }
 }
