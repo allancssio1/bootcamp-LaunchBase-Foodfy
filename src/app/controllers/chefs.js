@@ -41,7 +41,10 @@ module.exports = {
       return res.send("Enviar ao menos uma imagem!")
     }
 
-    let result = await File.create(req.file)
+    let result = await File.create({
+      ...req.file,
+      path: req.file.path.replace(/\\/g, "/")
+    })
     const idFile = result
     
     result = await Chefs.create({...req.body, file_id: idFile })
@@ -100,6 +103,8 @@ module.exports = {
 
     let result = await Chefs.find(req.body.id)
     const fileIdOld = result.rows[0].file_id
+
+    await Chefs.update({...req.body, file_id: null})
 
     await File.delete(fileIdOld)
 
