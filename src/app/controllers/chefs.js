@@ -115,9 +115,9 @@ module.exports = {
 
     return res.redirect(`/admin/chefs/${req.body.id}`)
   },
-  delete (req, res) {
-    Chefs.delete(req.body.id, chef => {
-      return res.redirect(`/admin/chefs`)
-    })
+  async delete (req, res) {
+    return res.send("deletar")
+
+    return res.redirect(`/admin/chefs`)
   }
 }

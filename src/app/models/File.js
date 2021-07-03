@@ -63,15 +63,17 @@ module.exports = {
     try {
       let result = await db.query(`SELECT * FROM recipes_files WHERE file_id = $1`, [id])
       if(result.rows[0]) {
-        const fileForRecipesAndFiles = result.rows[0].id
+        const idRecipesFiles = result.rows[0].id
         
-        await db.query(`DELETE FROM recipes_files WHERE id = $1`, [fileForRecipesAndFiles])
+        await db.query(`DELETE FROM recipes_files WHERE id = $1`, [idRecipesFiles])
       }
 
       result = await db.query(`SELECT * FROM files WHERE id = $1`, [id])
       const file = result.rows[0]
       
-      fs.unlinkSync(file.path)
+      if (file.path) {
+        fs.unlinkSync(file.path)
+      }
 
       return db.query(`DELETE FROM files WHERE id = $1`, [id])
     } catch (error) {

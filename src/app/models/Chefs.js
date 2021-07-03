@@ -54,7 +54,8 @@ module.exports = {
   },
   delete (id){
     try {
-      return db.query(``)
+      
+      
     } catch (error) {
       
     }
