@@ -9,20 +9,15 @@ module.exports = {
     const recipes = results.rows
     await Promise.all(recipes)
 
-    // const idRecipes = recipes.map(recipe => recipe.id)
+    // console.log(recipes)
 
-    // results = idRecipes.map(id => RecipeAndFiles.findRecipeId(id))
-    // const filesPromise = await Promise.all(results)
+    results = await recipes.map(recipe => RecipeAndFiles.findRecipeId(recipe.id))
+    const teste = results
+    await Promise.all(teste)
 
-    // // TRAS SOMENTE UM ARRAY COM OUTROS ARRAYS ONDE ESSE ULTIMO POSSUE OS 
-    // const arrayOfIdOfFiles = filesPromise.map(file => {
-    //   return file.rows.map(idFile => idFile.file_id)
-    // })
-    // const file = arrayOfIdOfFiles.map(array => {
-    //   return array.map(id => File.findFileForId(id))
-    // })
-    // await Promise.all(file)
-    // console.log(arrayOfIdOfFiles)
+    console.log(teste[0])
+    console.log(teste[0].rows)
+
     return res.render('admin/recipes/index', { recipes })
     
   },
