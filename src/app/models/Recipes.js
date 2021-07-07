@@ -3,8 +3,7 @@ const {date} = require('../lib/utils')
 
 module.exports = {
   all () {
-    return db.query(`SELECT recipes.*, chefs.name AS chef_name FROM recipes
-      LEFT JOIN chefs ON (chefs.id = recipes.chef_id)`)
+    return db.query(`SELECT * FROM recipes`)
   },
   findBy(filter, callback) {
     db.query(`SELECT recipes.*, chefs.name AS chef_name FROM recipes

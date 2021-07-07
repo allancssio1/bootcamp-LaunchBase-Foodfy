@@ -5,20 +5,22 @@ const RecipeAndFiles = require('../models/RecipeAndFiles')
 
 module.exports = {
   async index (req, res) {
+    let files = []
     let results = await Recipes.all()
     const recipes = results.rows
-    await Promise.all(recipes)
 
-    // console.log(recipes)
+    results = recipes.map(recipe => RecipeAndFiles.findRecipeId(recipe.id))
+    const promiseRecipeAndFiles = await Promise.all(results)
+    
+    for (file of promiseRecipeAndFiles) {
+      results = await File.findFileForId(file.rows[0].file_id)
+      files.push(results.rows[0])
+    }
+    
+    files.map(file => file.src = `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`)
+    console.log(files)
 
-    results = await recipes.map(recipe => RecipeAndFiles.findRecipeId(recipe.id))
-    const teste = results
-    await Promise.all(teste)
-
-    console.log(teste[0])
-    console.log(teste[0].rows)
-
-    return res.render('admin/recipes/index', { recipes })
+    return res.render('admin/recipes/index')
     
   },
   async create (req, res) {
