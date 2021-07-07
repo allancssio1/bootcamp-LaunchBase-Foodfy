@@ -8,19 +8,30 @@ module.exports = {
     let files = []
     let results = await Recipes.all()
     const recipes = results.rows
+    
+    results = recipes.map(recipe => Chefs.find(recipe.chef_id))
+    const chefs = await Promise.all(results)
 
+    
     results = recipes.map(recipe => RecipeAndFiles.findRecipeId(recipe.id))
     const promiseRecipeAndFiles = await Promise.all(results)
-    
+
+
     for (file of promiseRecipeAndFiles) {
       results = await File.findFileForId(file.rows[0].file_id)
       files.push(results.rows[0])
     }
-    
-    files.map(file => file.src = `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`)
-    console.log(files)
 
-    return res.render('admin/recipes/index')
+    files.map(file => file.src = `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`)
+    for(recipe in recipes) {
+      recipes[recipe] = {
+        ...recipes[recipe],
+        path: files[recipe].path,
+        src: files[recipe].src
+      }
+    }
+
+    return res.render('admin/recipes/index', {recipes, chefs})
     
   },
   async create (req, res) {
