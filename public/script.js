@@ -4,7 +4,8 @@ const cards = document.querySelectorAll('.card'),
   chefsAdmin = document.querySelectorAll('.chef.item a'),
   chefsUser = document.querySelectorAll('.card_chef'),
   navegationsAdmin = document.querySelectorAll('#header-admin a'),
-  navegationsUser = document.querySelectorAll('.navegacao a')
+  navegationsUser = document.querySelectorAll('.navegacao a'),
+  details = document.querySelectorAll('.details')
 
 for (let item of navegationsAdmin) {
   if(currentPage.includes(item.getAttribute('href'))) {
@@ -54,6 +55,7 @@ if(document.querySelector('.add-ingredient')){
 if(document.querySelector('.add-preparation')){
   document.querySelector('.add-preparation').addEventListener('click', addPreparation)
 }
+
 if(formDelete){
   formDelete.addEventListener('submit', function (event) {
     const numberRecipes = Number(document.getElementById('countRecipes').innerHTML)
@@ -66,6 +68,31 @@ if(formDelete){
         alert('Chef possui receitas e não pode ser deletado!')
         event.preventDefault()
       }
+    }
+  })
+}
+
+function mostrar(element) {
+  if (element == 'Esconder') {
+    return true
+  }
+}
+function esconder(element) {
+  if (element == 'Mostrar') {
+    return true
+  }
+}
+for (let detail of details) {
+  const buttonOption = detail.querySelector('.button')
+  const content = detail.querySelector('.content')
+  buttonOption.addEventListener('click', () => {
+    if(mostrar(buttonOption.innerHTML) == true) {
+      buttonOption.innerHTML = "Mostrar"
+      content.classList.add('no-display')
+    }else if(esconder(buttonOption.innerHTML) == true) {
+      buttonOption.innerHTML = "Esconder"
+      content.classList.remove('no-display')
+
     }
   })
 }

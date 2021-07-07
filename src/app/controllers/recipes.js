@@ -5,17 +5,18 @@ const RecipeAndFiles = require('../models/RecipeAndFiles')
 
 module.exports = {
   async index (req, res) {
-    let files = []
+    let files = [],
+    chefs = []
     let results = await Recipes.all()
     const recipes = results.rows
     
     results = recipes.map(recipe => Chefs.find(recipe.chef_id))
-    const chefs = await Promise.all(results)
+    const promiseChefs = await Promise.all(results)
 
-    
+    promiseChefs.map(chef => chef.rows.map(infoOfChef => chefs.push(infoOfChef)))
+
     results = recipes.map(recipe => RecipeAndFiles.findRecipeId(recipe.id))
     const promiseRecipeAndFiles = await Promise.all(results)
-
 
     for (file of promiseRecipeAndFiles) {
       results = await File.findFileForId(file.rows[0].file_id)
@@ -23,15 +24,17 @@ module.exports = {
     }
 
     files.map(file => file.src = `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`)
-    for(recipe in recipes) {
-      recipes[recipe] = {
-        ...recipes[recipe],
-        path: files[recipe].path,
-        src: files[recipe].src
+    
+    for(index in recipes) {
+      recipes[index] = {
+        ...recipes[index],
+        path: files[index].path,
+        src: files[index].src,
+        chef_name: chefs[index].name
       }
     }
 
-    return res.render('admin/recipes/index', {recipes, chefs})
+    return res.render('admin/recipes/index', {recipes})
     
   },
   async create (req, res) {

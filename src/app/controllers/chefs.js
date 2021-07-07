@@ -118,6 +118,6 @@ module.exports = {
   async delete (req, res) {
     return res.send("deletar")
 
-    return res.redirect(`/admin/chefs`)
+    // return res.redirect(`/admin/chefs`)
   }
 }
