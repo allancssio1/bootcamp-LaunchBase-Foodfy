@@ -109,9 +109,7 @@ module.exports = {
       }
     }
     
-    if(req.files.length == 0 && req.body.removed_files == 0) {
-      return res.send("enviar alguma foto")
-    }
+   
 
     if(req.body.removed_files) {
       const removedFiles = req.body.removed_files.split(',')
