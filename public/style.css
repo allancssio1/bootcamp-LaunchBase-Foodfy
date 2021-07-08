@@ -371,8 +371,6 @@ body .sobre{
 }
 .card-recipes .container-images-gallery .images-gallery{
   display: flex;
-  flex-direction: row-reverse;
-  width: 350px;
   height: 60px;
   
 }

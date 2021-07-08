@@ -94,10 +94,9 @@ module.exports = {
     
     const filesPromise = await Promise.all(filesId)
     const files = filesPromise.map(file => ({
-      ...file.rows,
+      ...file.rows['0'],
       src: `${req.protocol}://${req.headers.host}${file.rows['0'].path.replace("public", "")}`
     }))
-
     return res.render('admin/recipes/edit', { recipe, chefOptions, files })
   },
   async put (req, res) {
@@ -107,28 +106,30 @@ module.exports = {
         return res.send('Você precisa dar um nome e enviar ao menos uma imagem.')
       }
     }
+
     const oldFiles = await RecipeAndFiles.findRecipeId(req.body.id)
-    
-    console.log(req.body.removed_files.length)
-    
-    if(
-      req.files.length == 0 &&
-      req.body.removed_files.length >= oldFiles.rows.length
-    ) {
-      return res.send("envie ao menos uma imagem.")
+
+    if (
+      (req.body.removed_files.length/4) >= oldFiles.rows.length 
+      &&
+      req.files == ""
+    ){
+      return res.send("Enviar ao menos uma imagem!")
     }
 
     if(req.body.removed_files) {
       const removedFiles = req.body.removed_files.split(',')
+      
       const lastIndex = removedFiles.length - 1
       removedFiles.splice(lastIndex, 1)
-
+      
       const removedFilesPromisse = removedFiles.map(id => File.delete(id))
       await Promise.all(removedFilesPromisse)
     }
-    
+      
     if(req.files.length != 0) {
       const totalFiles = oldFiles.rows.length + req.files.length
+      
 
       if (totalFiles <= 5) {
         const newFilesPromese = req.files.map(file => {
