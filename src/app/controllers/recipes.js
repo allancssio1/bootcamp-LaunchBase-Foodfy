@@ -5,8 +5,8 @@ const RecipeAndFiles = require('../models/RecipeAndFiles')
 
 module.exports = {
   async index (req, res) {
-    let files = [],
-    chefs = []
+    let files = []
+    let chefs = []
     let results = await Recipes.all()
     const recipes = results.rows
     
@@ -65,7 +65,6 @@ module.exports = {
     if (!recipe) 
       return res.render('user/nofound')
 
-    
     result = await RecipeAndFiles.findRecipeId(recipe.id)
 
     const getFilesPromise = result.rows.map(file => {
@@ -108,8 +107,16 @@ module.exports = {
         return res.send('Você precisa dar um nome e enviar ao menos uma imagem.')
       }
     }
+    const oldFiles = await RecipeAndFiles.findRecipeId(req.body.id)
     
-   
+    console.log(req.body.removed_files.length)
+    
+    if(
+      req.files.length == 0 &&
+      req.body.removed_files.length >= oldFiles.rows.length
+    ) {
+      return res.send("envie ao menos uma imagem.")
+    }
 
     if(req.body.removed_files) {
       const removedFiles = req.body.removed_files.split(',')
@@ -119,9 +126,8 @@ module.exports = {
       const removedFilesPromisse = removedFiles.map(id => File.delete(id))
       await Promise.all(removedFilesPromisse)
     }
-
+    
     if(req.files.length != 0) {
-      const oldFiles = await RecipeAndFiles.findRecipeId(req.body.id)
       const totalFiles = oldFiles.rows.length + req.files.length
 
       if (totalFiles <= 5) {
