@@ -2,13 +2,14 @@
 
 <div class="form-items">
   <div>Nome</div>
-  <input type="text" class="input" id="chef" name="name" values="{{chef.name}}" placeholder="{{chef.name}}"/>
+  <input type="text" class="input" id="chef" name="name" value="{{chef.name}}" placeholder="{{chef.name}}"/>
 </div>
 
 <div class="form-items">
   <div>Avatar</div>
   <div class="form-item-image">
     <div class="avatar-upload">
+
     <label for="avatar-input">
       Enviar Avatar
     </label>
@@ -17,8 +18,8 @@
         type="file"
         name="avatar"
         accept="image/*"
-        values="{{fileChef.name}}"
-        onchange="PhotosUpload.handleImageInput(event)">
+        onchange="PhotosUpload.handleImageInput(event)"
+      />
     </div>
   </div>
 </div>

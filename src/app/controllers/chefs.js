@@ -88,30 +88,33 @@ module.exports = {
     const chef = result.rows[0]
 
     result = await File.findFileForId(chef.file_id)
-    const fileChef = result.rows[0]
+    const files = result.rows
 
-    return res.render("admin/chefs/edit", {chef, fileChef})
+    return res.render("admin/chefs/edit", {chef, files})
   },
   async put (req, res) {
     if (req.body.name == ""){
       res.send('Preencha todos os dados')
     }
+    
+    let result = await Chefs.find(req.body.id)
+    const chef = result.rows[0]
 
     if(!req.file) {
-      return res.send("envie uma imagem como avatar!")
+      await Chefs.update(chef)
+      
+      return res.redirect(`/admin/chefs/${req.body.id}`)
     }
-
-    let result = await Chefs.find(req.body.id)
-    const fileIdOld = result.rows[0].file_id
-
-    await Chefs.update({...req.body, file_id: null})
-
-    await File.delete(fileIdOld)
-
-    result = await File.create(req.file)
-    const fileId = result
-
-    result = await Chefs.update({... req.body, file_id: fileId})
+    
+    result = await File.create({
+      ...req.file,
+      path: req.file.path.replace(/\\/g, "/")
+    })
+    const idFile = result
+    
+    await Chefs.update({...req.body, file_id: idFile})
+    
+    await File.delete(chef.file_id)
 
     return res.redirect(`/admin/chefs/${req.body.id}`)
   },

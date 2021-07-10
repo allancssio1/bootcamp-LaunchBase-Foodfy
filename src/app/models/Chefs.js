@@ -28,7 +28,8 @@ module.exports = {
     
     return db.query(query, values)
   },
-  update ({id, name, file_id}) {
+  update (data) {
+  
     try {
       const query = `
         UPDATE chefs SET
@@ -36,11 +37,14 @@ module.exports = {
           file_id=($2)
         WHERE id=$3
       `
-      const values = [name, file_id, id]
+      const values = [data.name, data.file_id, data.id]
       
       return db.query(query, values)
+
     } catch (error) {
+      
       console.error(error)
+      
     }
   },
   delete (id){
