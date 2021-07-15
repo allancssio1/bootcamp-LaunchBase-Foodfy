@@ -9,7 +9,7 @@ module.exports = {
     let result = await Chefs.all()
     const chefs = result.rows
 
-    result = await chefs.map(chef => File.findFileForId(chef.file_id))
+    result = chefs.map(async chef => await File.findFileForId(chef.file_id))
     
     let file = await Promise.all(result)
     file.map(newFile => newFile.rows.map(rows => files.push(rows)))

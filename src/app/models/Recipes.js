@@ -3,7 +3,10 @@ const {date} = require('../lib/utils')
 
 module.exports = {
   all () {
-    return db.query(`SELECT * FROM recipes`)
+    return db.query(`
+      SELECT * FROM recipes
+      ORDER BY recipes.created_at DESC
+      `)
   },
   findBy(filter, callback) {
     db.query(`SELECT recipes.*, chefs.name AS chef_name FROM recipes
